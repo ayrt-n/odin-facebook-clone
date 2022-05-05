@@ -1,5 +1,13 @@
 <%= form_with model: post do |form| %>
-  <%= form.label :body %>
-  <%= form.text_field :body %>    
-  <%= form.submit %>
+  <div class="field">
+    <div class="control">
+      <%= form.label :body %>
+      <%= form.text_field :body, class: "input", placeholder: "What's on your mind?" %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= form.submit class: "button is-link" %>
+    </div>
+  </div>
 <% end %>

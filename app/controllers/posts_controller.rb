@@ -2,10 +2,11 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
+    @comment = Comment.new
   end
 
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
     @post.save
   end
 

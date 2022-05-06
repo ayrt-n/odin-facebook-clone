@@ -1,0 +1,21 @@
+<div>
+  <% posts.each do |post| %>
+    <div>
+      <p><%= post.user.email %></p>
+      <p><%= post.body %></p>
+      <div style="margin-left: 50px">
+        <% post.comments.each do |comment| %>
+          <p><%= comment.user.email %></p>
+          <p><%= comment.body %></p>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [post, comment] do |comment_form| %>
+          <%= comment_form.label :body %>
+          <%= comment_form.text_field :body %>
+          <%= comment_form.submit %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

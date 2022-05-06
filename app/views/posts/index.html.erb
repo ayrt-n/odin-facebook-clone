@@ -1,24 +1,8 @@
-<div>
-  <%= render 'post_form', post: @post %>  
-</div>
-<div>
-  <% @posts.each do |post| %>
-    <div>
-      <p><%= post.user.email %></p>
-      <p><%= post.body %></p>
-      <div style="margin-left: 50px">
-        <% post.comments.each do |comment| %>
-          <p><%= comment.user.email %></p>
-          <p><%= comment.body %></p>
-        <% end %>
-      </div>
-      <div>
-        <%= form_with model: [post, @comment] do |comment_form| %>
-          <%= comment_form.label :body %>
-          <%= comment_form.text_field :body %>
-          <%= comment_form.submit %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+    <%= render 'post_form', post: @post %>  
+    <%= render 'post_feed', posts: @posts, comment: @comment %>
+  </div>
+  <div class="column"></div>
 </div>

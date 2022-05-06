@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      post:
+        body: "New post"
+      comment:
+        body: "New comment"
+      

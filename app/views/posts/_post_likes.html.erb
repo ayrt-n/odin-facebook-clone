@@ -1,0 +1,9 @@
+<div>
+  <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} like this." %>
+  <hr>
+  <% if post.likes.exists?(user_id: current_user) %>
+    <%= link_to "Dislike", post_like_path(post), method: :delete, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to "Like", post_like_path(post), method: :post, data: { turbo_method: :post } %>
+  <% end %>
+</div>

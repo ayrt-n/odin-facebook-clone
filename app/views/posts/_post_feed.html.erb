@@ -4,15 +4,7 @@
       <h5><%= post.user.email %></h5>
       <p><%= simple_format(post.body) %></p>
     </div>
-    <div>
-      <%= "#{post.likes_count} people like this." %>
-      <hr>
-      <% if post.likes.exists?(user_id: current_user) %>
-        <%= link_to "Dislike", post_like_path(post), method: :delete, data: { turbo_method: :delete } %>
-      <% else %>
-        <%= link_to "Like", post_like_path(post), method: :post, data: { turbo_method: :post } %>
-      <% end %>
-    </div>
+    <%= render 'post_likes', post: post %>
     <hr>
     <% post.comments.each do |comment| %>
       <div class="content">

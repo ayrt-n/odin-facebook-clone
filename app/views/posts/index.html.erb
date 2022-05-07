@@ -2,7 +2,7 @@
   <div class="column"></div>
   <div class="column is-two-thirds">
     <%= render 'post_form', post: @post %>  
-    <%= render 'post_feed', posts: @posts, comment: @comment %>
+    <%= render @posts, comment: @comment %>
   </div>
   <div class="column"></div>
 </div>

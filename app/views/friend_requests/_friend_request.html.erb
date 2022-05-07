@@ -1,0 +1,4 @@
+<div class="box">
+  <h5><%= friend_request.requester.email %></h5>
+  <%= button_to "Accept", friendships_path(friend_id: friend_request.requester), method: :post, data: { turbo_method: :post } %>
+</div>

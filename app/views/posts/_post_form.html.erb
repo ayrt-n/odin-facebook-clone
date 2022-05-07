@@ -1,9 +1,9 @@
-<div>
+<div class="box">
   <%= form_with model: post do |form| %>
     <div class="field">
       <div class="control">
-        <%= form.label :body %>
-        <%= form.text_field :body, class: "input", placeholder: "What's on your mind?" %>
+        <%= form.label :body, class: "is-hidden" %>
+        <%= form.text_area :body, class: "textarea", placeholder: "What's on your mind?" %>
       </div>
     </div>
     <div class="field">

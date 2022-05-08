@@ -9,6 +9,18 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
+    
+  end
 
+  def accept
+    friend_request = FriendRequest.find(params[:id])
+    if current_user == friend_request.requestee
+      friendship = current_user.friendships.build(friend: friend_request.requester)
+      friendship.save
+
+      friend_request.destroy
+    else
+      redirect_to :index
+    end
   end
 end

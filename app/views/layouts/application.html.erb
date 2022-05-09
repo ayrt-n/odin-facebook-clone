@@ -12,7 +12,12 @@
 
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-start">
+        <%= link_to "Home", root_path, class: "navbar-item" %>
+      </div>
       <div class="navbar-end">
+        <%= link_to "Find Friends", users_path, class: "navbar-item" %>
+        <%= link_to "Friend Requests", friend_requests_path, class: "navbar-item" %>
         <div class="navbar-item">
           <div class="buttons">
             <% if user_signed_in? %>
@@ -27,7 +32,7 @@
         </div>
       </div>
     </nav>
-    <%= yield %>
+    <div class="content"><%= yield %></div>
     <div><%= "Logged in as #{current_user.email}" %></div>
   </body>
 </html>

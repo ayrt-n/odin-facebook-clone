@@ -66,11 +66,20 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
+  # gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
+  # gem "webdrivers"
 end
 
 # Use Devise for User Authentication
 gem 'devise'
 gem "bulma-rails", "~> 0.9.3"
+
+# Testing related gems
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'webdrivers'
+  gem 'faker'
+end

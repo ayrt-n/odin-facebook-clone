@@ -83,3 +83,6 @@ group :development, :test do
   gem 'webdrivers'
   gem 'faker'
 end
+
+# Fix issues with gem dependencies/net-http and warnings
+gem 'net-http'

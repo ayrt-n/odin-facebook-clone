@@ -10,7 +10,6 @@ RSpec.describe 'Creating a post', type: :system do
     visit posts_path
     fill_in 'New post', with: 'Test post!'
     click_on 'Create Post'
-    sleep(5)
     expect(page).to have_content('Test post!')
   end
 end

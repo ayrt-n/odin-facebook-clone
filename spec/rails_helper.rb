@@ -61,10 +61,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
 
-  # Configure RSpec to work with Factory Bot
-  config.include FactoryBot::Syntax:Methods
+# Configure RSpec to include Devise test helpers
+RSpec.configure do |config| 
+  config.include Warden::Test::Helpers
+end
 
-  # Configure RSpec to include Devise test helpers
-  config.incldue Warden::Test::Helpers
+# Configure RSpec to include FactoryBot syntax helpers
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
 end

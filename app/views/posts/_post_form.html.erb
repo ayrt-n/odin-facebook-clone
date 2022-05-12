@@ -5,6 +5,11 @@
         <%= form.label :body, class: "is-hidden" %>
         <%= form.text_area :body, class: "textarea", placeholder: "What's on your mind?" %>
       </div>
+      <% if post.errors.any? %>
+        <% post.errors.full_messages.each do |msg| %>
+          <p class="help is-danger"><%= msg %></p>
+        <% end %>
+      <% end %>
     </div>
     <div class="field">
       <div class="control">

@@ -11,6 +11,9 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
+      @posts = Post.all.order('created_at DESC')
+      @comment = Comment.new
+
       render :index, status: :unprocessable_entity
     end
   end

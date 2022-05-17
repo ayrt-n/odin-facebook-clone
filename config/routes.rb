@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
   
   # Routes for post-system
-  resources :posts, only: [:index, :new, :create] do
+  resources :posts, only: [:index, :show, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create]
     resource :like, only: [:create, :destroy]
   end

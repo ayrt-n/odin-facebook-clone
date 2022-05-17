@@ -64,19 +64,13 @@ group :development do
   # gem "spring"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  # gem "capybara"
-  gem "selenium-webdriver"
-  # gem "webdrivers"
-end
-
 # Use Devise for User Authentication
 gem 'devise'
 gem "bulma-rails", "~> 0.9.3"
 
 # Testing related gems
 group :development, :test do
+  gem "selenium-webdriver"
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'capybara'
@@ -86,3 +80,6 @@ end
 
 # Fix issues with gem dependencies/net-http and warnings
 gem 'net-http'
+
+# Font Awesome for Icons
+gem 'font-awesome-rails'

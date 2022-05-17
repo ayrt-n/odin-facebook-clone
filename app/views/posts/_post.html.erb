@@ -1,6 +1,13 @@
 <div class="box">
   <div class="content">
-    <h5><%= post.user.email %></h5>
+    <nav class="level">
+      <div class="level-left">
+        <h5><%= post.user.email %></h5>
+      </div>
+      <% if user_signed_in? && current_user == post.user %>
+        <%= render 'post_controls', post: post %>
+      <% end %>
+    </nav>
     <p><%= simple_format(post.body) %></p>
   </div>
   <%= render 'post_likes', post: post %>

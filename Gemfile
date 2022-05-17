@@ -82,4 +82,4 @@ end
 gem 'net-http'
 
 # Font Awesome for Icons
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'

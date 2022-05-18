@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order('created_at DESC')
     @post = Post.new
-    @comment = Comment.new
+    @new_comment = Comment.new
   end
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
+    @new_comment = Comment.new
   end
 
   def create
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       @posts = Post.all.order('created_at DESC')
-      @comment = Comment.new
+      @new_comment = Comment.new
 
       render :index, status: :unprocessable_entity
     end

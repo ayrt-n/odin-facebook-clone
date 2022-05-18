@@ -1,0 +1,13 @@
+<div>
+  <%= form_with model: [post, new_comment] do |comment_form| %>
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <%= comment_form.label :body, class: "is-hidden" %>
+        <%= comment_form.text_field :body, class: "input is-fullwidth", placeholder: "Leave a comment..." %>
+      </div>
+      <div class="control">
+        <%= comment_form.submit class: "button is-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>

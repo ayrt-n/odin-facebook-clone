@@ -1,0 +1,11 @@
+<div class="content">
+  <nav class="level mb-2">
+    <div class="level-left">
+      <h6 class="mb-0"><%= comment.user.email %></h6>
+    </div>
+    <% if user_signed_in? && current_user == post.user %>
+      <%= render '/comments/comment_controls', comment: comment, post: post %>
+    <% end %>
+  </nav>
+  <%= simple_format(comment.body) %>
+</div>

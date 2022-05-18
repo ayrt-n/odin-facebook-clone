@@ -2,6 +2,6 @@
 FactoryBot.define do
   factory :post do
     user
-    body { 'FactoryPost' }
+    body { Faker::Lorem.sentence }
   end
 end

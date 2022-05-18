@@ -13,22 +13,7 @@
   <%= render 'post_likes', post: post %>
   <hr>
   <% post.comments.each do |comment| %>
-    <div class="content">
-      <h6><%= comment.user.email %></h6>
-      <p><%= simple_format(comment.body) %></p>
-    </div>
+    <%= render '/comments/comment', comment: comment, post: post %>
   <% end %>
-  <div>
-    <%= form_with model: [post, comment] do |comment_form| %>
-      <div class="field has-addons">
-        <div class="control is-expanded">
-          <%= comment_form.label :body, class: "is-hidden" %>
-          <%= comment_form.text_field :body, class: "input is-fullwidth", placeholder: "Leave a comment..." %>
-        </div>
-        <div class="control">
-          <%= comment_form.submit class: "button is-link" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'comments/comment_form', new_comment: new_comment, post: post %>
 </div>

@@ -1,11 +1,12 @@
 <div class="level-right">
   <div class="level-item">
     <%= link_to edit_post_path(post), class: "has-text-dark" do %>
-      <i class="far fa-edit"></i>
+      <i class="far fa-edit" alt="edit"></i>
     <% end %>
   </div>
   <div class="level-item">
     <%= link_to post, class: "has-text-dark", method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-      <i class="far fa-trash-alt"></i>
+      <i class="far fa-trash-alt" alt="delete"></i>
     <% end %>
+  </div>
 </div>

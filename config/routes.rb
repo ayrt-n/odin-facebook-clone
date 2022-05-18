@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   # Routes for post-system
   resources :posts, only: [:index, :show, :create, :edit, :update, :destroy] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
     resource :like, only: [:create, :destroy]
   end
 

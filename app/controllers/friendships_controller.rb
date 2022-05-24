@@ -1,9 +1,5 @@
 class FriendshipsController < ApplicationController
-  def create
-
-  end
-
-  def destroy
-    
+  def index
+    @friendships = Friendship.where(user: current_user)
   end
 end

@@ -32,7 +32,19 @@
         </div>
       </div>
     </nav>
+
+    <% flash.each do |key, msg| %>
+      <article class="message is-danger">
+        <div class="message-body">
+          <%= msg %>
+        </div>
+      </article>
+    <% end %>
+
     <div class="content"><%= yield %></div>
-    <div><%= "Logged in as #{current_user.email}" %></div>
+
+    <% if user_signed_in? %>
+      <div><%= "Logged in as #{current_user.email}" %></div>
+    <% end %>
   </body>
 </html>

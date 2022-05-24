@@ -6,5 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(email: 'tester1@gmail.com', password: 'password')
-User.create(email: 'tester2@gmail.com', password: 'password')
+u1 = User.create(email: 'tester1@gmail.com', password: 'password')
+u2 = User.create(email: 'tester2@gmail.com', password: 'password')
+u3 = User.create(email: 'tester3@gmail.com', password: 'password')
+u4 = User.create(email: 'tester4@gmail.com', password: 'password')
+
+FriendRequest.create(requester: u2, requestee: u1)
+FriendRequest.create(requester: u3, requestee: u1)
+
+Friendship.create(user: u1, friend: u4)
+
+u4.posts.create(body: 'I seeded this post!')

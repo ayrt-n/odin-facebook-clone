@@ -3,7 +3,7 @@
     <div class="level-left">
       <h6 class="mb-0"><%= comment.user.email %></h6>
     </div>
-    <% if user_signed_in? && current_user == post.user %>
+    <% if user_signed_in? && current_user == comment.user %>
       <%= render '/comments/comment_controls', comment: comment, post: post %>
     <% end %>
   </nav>

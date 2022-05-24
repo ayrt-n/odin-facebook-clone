@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     unless current_user == @post.user
-      flash[:error] = "You do not have the correct permissions to do this"
+      flash[:alert] = "You do not have the correct permissions to do this"
       redirect_to posts_path
     end
   end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   # Routes for friendship-system
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships, only: [:index, :create, :destroy]
   resources :friend_requests, only: [:index, :create, :destroy] do
     post :accept, on: :member
     post :decline, on: :member

@@ -33,20 +33,22 @@
       </div>
     </nav>
 
-    <% if flash[:alert] %>
-      <article class="message is-danger">
-        <div class="message-body">
-          <%= alert %>
-        </div>
-      </article>
-    <% end %>
-    <% if flash[:notice] %>
-      <article class="message is-success">
-        <div class="message-body">
-          <%= notice %>
-        </div>
-      </article>
-    <% end %>
+    <div class="container mb-4">
+      <% if flash[:alert] %>
+        <article class="message is-danger">
+          <div class="message-body">
+            <%= alert %>
+          </div>
+        </article>
+      <% end %>
+      <% if flash[:notice] %>
+        <article class="message is-success">
+          <div class="message-body">
+            <%= notice %>
+          </div>
+        </article>
+      <% end %>
+    </div>
 
     <div class="content"><%= yield %></div>
 

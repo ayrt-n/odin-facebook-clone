@@ -1,9 +1,15 @@
 <div>
-  <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} like this." %>
   <hr>
+  <% if post.liked? %>
+    <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} like this." %>
+  <% end %>
   <% if post.likes.exists?(user_id: current_user) %>
-    <%= link_to "Dislike", post_like_path(post), method: :delete, data: { turbo_method: :delete } %>
+    <%= link_to post_like_path(post), class: "has-text-dark", method: :delete, data: { turbo_method: :delete } do %>
+      <i class="fas fa-thumbs-up" alt="unlike"></i>
+    <% end %>
   <% else %>
-    <%= link_to "Like", post_like_path(post), method: :post, data: { turbo_method: :post } %>
+    <%= link_to post_like_path(post), class: "has-text-dark", method: :post, data: { turbo_method: :post } do %>
+      <i class="far fa-thumbs-up" alt="like"></i>
+    <% end %>
   <% end %>
 </div>

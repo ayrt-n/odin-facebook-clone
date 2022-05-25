@@ -1,4 +1,8 @@
 <div class="box">
   <h5><%= user.email %></h5>
-  <%= link_to "Send Friend Request", friend_requests_path(requestee_id: user), method: :post, data: { turbo_method: :post } %>
+  <% if current_user.pending_friends.exists?(user.id) %>
+    Cancel friend request [NOT YET IMPLEMENTED]
+  <% else %>
+    <%= link_to "Send Friend Request", friend_request_path(requestee_id: user), method: :post, data: { turbo_method: :post } %>
+  <% end %>
 </div>

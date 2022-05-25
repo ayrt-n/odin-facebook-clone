@@ -1,13 +1,13 @@
 class FriendRequestsController < ApplicationController
-  before_action :verify_user_friend_request, only: [:accept, :destroy]
+  before_action :verify_user_friend_request, only: [:accept, :decline]
 
   def index
     @friend_requests = current_user.incoming_friend_requests
   end
-  
+
   def create
-    friend_request = current_user.outgoing_friend_requests.build(requestee_id: params[:requestee_id])
-    friend_request.save
+    @friend_request = current_user.outgoing_friend_requests.build(requestee_id: params[:requestee_id])
+    @friend_request.save
   end
 
   def accept
@@ -23,12 +23,19 @@ class FriendRequestsController < ApplicationController
     end
   end
 
-  def destroy
+  def decline
     @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
 
     flash[:alert] = 'Friend request declined!'
     redirect_to friend_requests_path
+  end
+
+  def destroy
+    @friend_request = FriendRequest.find(params[:id])
+    @friend_request.destroy
+
+    redirect_to roots_path
   end
 
   private

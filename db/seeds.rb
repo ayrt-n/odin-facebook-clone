@@ -10,6 +10,7 @@ u1 = User.create(email: 'tester1@gmail.com', password: 'password')
 u2 = User.create(email: 'tester2@gmail.com', password: 'password')
 u3 = User.create(email: 'tester3@gmail.com', password: 'password')
 u4 = User.create(email: 'tester4@gmail.com', password: 'password')
+u5 = User.create(email: 'tester5@gmail.com', password: 'password')
 
 FriendRequest.create(requester: u2, requestee: u1)
 FriendRequest.create(requester: u3, requestee: u1)

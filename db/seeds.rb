@@ -18,3 +18,4 @@ FriendRequest.create(requester: u3, requestee: u1)
 Friendship.create(user: u1, friend: u4)
 
 u4.posts.create(body: 'I seeded this post!')
+u2.posts.create(body: 'Unable to see until we become frenz')

@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :verify_post_author, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.order('created_at DESC')
+    @friends = current_user.friends.ids.push(current_user.id)
+    @posts = Post.posted_by(@friends).order('created_at DESC')
     @post = Post.new
     @new_comment = Comment.new
   end

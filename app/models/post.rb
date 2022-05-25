@@ -6,4 +6,10 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :posted_by, -> (user_ids) { where user_id: user_ids }
+
+  def liked?
+    return false if self.likes_count.nil? || self.likes_count.zero?
+
+    true
+  end
 end

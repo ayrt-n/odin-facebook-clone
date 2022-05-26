@@ -8,7 +8,13 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_request = current_user.outgoing_friend_requests.build(requestee_id: params[:requestee_id])
-    @friend_request.save
+
+    if @friend_request.save
+      redirect_to users_path
+    else
+      flash[:alert] = 'Ahh, something went wrong! We could not send a new friend request'
+      redirect_to users_path
+    end
   end
 
   def accept

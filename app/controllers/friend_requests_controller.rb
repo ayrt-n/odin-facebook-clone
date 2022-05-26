@@ -36,7 +36,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
 
-    redirect_to roots_path
+    redirect_to friend_requests_path
   end
 
   private

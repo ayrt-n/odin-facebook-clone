@@ -2,7 +2,8 @@ class FriendRequestsController < ApplicationController
   before_action :verify_user_friend_request, only: [:accept, :decline]
 
   def index
-    @friend_requests = current_user.incoming_friend_requests
+    @incoming_friend_requests = current_user.incoming_friend_requests
+    @outgoing_friend_requests = current_user.outgoing_friend_requests
   end
 
   def create

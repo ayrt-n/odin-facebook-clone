@@ -1,6 +1,4 @@
-<% unless outgoing_friend_request.nil? %>
-  <div class="box">
-    <h5><%= outgoing_friend_request.requestee.email %></h5>
-    <%= button_to "Cancel", friend_request_path(outgoing_friend_request), method: :delete, data: { turbo_method: :delete } %>
-  </div>
-<% end %>
+<div class="box">
+  <h5><%= outgoing_friend_request.requestee.email %></h5>
+  <%= button_to "Cancel", friend_request_path(outgoing_friend_request), method: :delete, data: { turbo_method: :delete } %>
+</div>

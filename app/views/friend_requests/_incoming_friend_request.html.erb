@@ -1,7 +1,5 @@
-<% unless incoming_friend_request.nil? %>
-  <div class="box">
-    <h5><%= incoming_friend_request.requester.email %></h5>
-    <%= button_to "Accept", accept_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post } %>
-    <%= button_to "Decline", decline_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post } %>
-  </div>
-<% end %>
+<div class="box">
+  <h5><%= incoming_friend_request.requester.email %></h5>
+  <%= button_to "Accept", accept_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post } %>
+  <%= button_to "Decline", decline_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post } %>
+</div>

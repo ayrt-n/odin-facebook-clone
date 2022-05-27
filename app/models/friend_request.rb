@@ -16,7 +16,5 @@ class FriendRequest < ApplicationRecord
 
   def create_new_friendship
     Friendship.create(user_id: requester_id, friend_id: requestee_id)
-    FriendRequest.where(requester_id: requester_id, requestee_id: requestee_id).destroy_all
-    FriendRequest.where(requester_id: requestee_id, requestee_id: requester_id).destroy_all
   end
 end

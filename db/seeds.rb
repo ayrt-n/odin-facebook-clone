@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-u1 = User.create(username: Faker::Name.name, email: 'tester1@gmail.com', password: 'password')
-u2 = User.create(username: Faker::Name.name, email: 'tester2@gmail.com', password: 'password')
-u3 = User.create(username: Faker::Name.name, email: 'tester3@gmail.com', password: 'password')
-u4 = User.create(username: Faker::Name.name, email: 'tester4@gmail.com', password: 'password')
-u5 = User.create(username: Faker::Name.name, email: 'tester5@gmail.com', password: 'password')
+u1 = User.create(username: Faker::Name.name, email: 'tester1@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
+u2 = User.create(username: Faker::Name.name, email: 'tester2@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
+u3 = User.create(username: Faker::Name.name, email: 'tester3@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
+u4 = User.create(username: Faker::Name.name, email: 'tester4@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
+u5 = User.create(username: Faker::Name.name, email: 'tester5@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
 
 FriendRequest.create(requester: u2, requestee: u1)
 FriendRequest.create(requester: u3, requestee: u1)

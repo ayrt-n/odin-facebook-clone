@@ -1,5 +1,5 @@
 <div class="box">
-  <h5><%= incoming_friend_request.requester.email %></h5>
+  <h5><%= link_to incoming_friend_request.requester.username, incoming_friend_request.requester, class: "has-text-dark" %></h5>
   <div class="field is-grouped">
     <div class="control"><%= button_to "Accept", accept_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-link" %></div>
     <div class="control"><%= button_to "Decline", decline_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-light" %></div>

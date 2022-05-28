@@ -1,5 +1,5 @@
 <div class="box">
-  <h5><%= user.email %></h5>
+  <h5><%= link_to user.username, user, class: "has-text-dark" %></h5>
   <% if current_user.pending_friends.exists?(user.id) %>
     <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
   <% else %>

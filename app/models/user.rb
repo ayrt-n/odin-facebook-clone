@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  devise :omniauthable, omniauth_providers: %i[github]
+
   # Friendship-system associations
   has_many :outgoing_friend_requests, class_name: 'FriendRequest', foreign_key: :requester_id
   has_many :incoming_friend_requests, class_name: 'FriendRequest', foreign_key: :requestee_id
@@ -17,4 +19,13 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   scope :not_friends_with, -> (user) { where.not(id: user.friends.ids.push(user.id)) }
+
+  def self.from_omniauth(auth)
+    puts 'auth is:'
+    puts auth
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
 end

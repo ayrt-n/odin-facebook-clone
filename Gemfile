@@ -83,3 +83,10 @@ gem 'net-http'
 
 # Font Awesome for Icons
 gem 'font-awesome-sass'
+
+# Gems for omniauth
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-rails_csrf_protection'
+
+# Figaro for storing ENV variables
+gem 'figaro'

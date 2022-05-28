@@ -4,7 +4,9 @@
       <figure class="image is-128x128">
         <%= image_tag "https://bulma.io/images/placeholders/128x128.png", class: "is-rounded" %>
       </figure>
-      <% unless current_user.friends.include?(@user) || current_user == @user %>
+      <% if current_user == @user %>
+        <%= link_to "Edit Profile", edit_user_path(@user), class: "button is-link" %>
+      <% elsif current_user.friends.exclude?(@user) %>
         <% if current_user.pending_friends.exists?(@user.id) %>
           <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
         <% else %>
@@ -22,7 +24,7 @@
               <%= link_to "Add bio", edit_user_path(@user) %>
             <% end %>
           <% end %>
-          <% if current_user.friends.include?(@user) %>
+          <% if current_user == @user || current_user.friends.include?(@user) %>
             <h3>Recent Posts</h3>
             <%= render @user.posts, new_comment: @new_comment%>
           <% end %>

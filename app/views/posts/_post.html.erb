@@ -10,7 +10,7 @@
     </nav>
     <p><%= simple_format(post.body) %></p>
   </div>
-  <%= render 'post_likes', post: post %>
+  <%= render '/posts/post_likes', post: post %>
   <hr>
   <% post.comments.each do |comment| %>
     <%= render '/comments/comment', comment: comment, post: post %>

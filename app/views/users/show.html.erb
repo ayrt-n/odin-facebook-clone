@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column has-text-centered">
+      <figure class="image is-128x128">
+        <%= image_tag "https://bulma.io/images/placeholders/128x128.png", class: "is-rounded" %>
+      </figure>
+      <% unless current_user.friends.include?(@user) %>
+        <% if current_user.pending_friends.exists?(@user.id) %>
+          <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
+        <% else %>
+          <%= button_to "Send Friend Request", friend_requests_path(requestee_id: @user), method: :post, data: { turbo_method: :post }, class: "button is-link" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="column is-two-thirds">
+        <div class="content">
+          <h1><%= @user.username %></h1>
+          <% if @user.bio %>
+            <p><%= simple_format(@user.bio) %></p>
+          <% else %>
+            <% if user_signed_in? && current_user == @user %>
+              <%= link_to "Add bio", edit_user_path(@user) %>
+            <% end %>
+          <% end %>
+          <% if current_user.friends.include?(@user) %>
+            <h3>Recent Posts</h3>
+            <%= render @user.posts, new_comment: @new_comment%>
+          <% end %>
+        </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
       <figure class="image is-128x128">
         <%= image_tag "https://bulma.io/images/placeholders/128x128.png", class: "is-rounded" %>
       </figure>
-      <% unless current_user.friends.include?(@user) %>
+      <% unless current_user.friends.include?(@user) || current_user == @user %>
         <% if current_user.pending_friends.exists?(@user.id) %>
           <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
         <% else %>

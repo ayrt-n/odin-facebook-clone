@@ -32,7 +32,9 @@
                 <strong>Sign up</strong>
               <% end %>
               <%= link_to "Log in", new_user_session_path, class: "button is-light"%>
-              <%= button_to "Githuber", user_github_omniauth_authorize_path, class: "button is-light", data: { turbo: "false" } %>
+              <%= button_to user_github_omniauth_authorize_path, class: "button is-light mb-2", data: { turbo: "false" } do %>
+                <i class="fab fa-github"></i><span class="ml-2">Sign in with Github</span>
+              <% end %>
             </div>
           </div>
         <% end %>

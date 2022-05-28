@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: %i[github]
 
+  validates :username, presence: true
+
   # Friendship-system associations
   has_many :outgoing_friend_requests, class_name: 'FriendRequest', foreign_key: :requester_id
   has_many :incoming_friend_requests, class_name: 'FriendRequest', foreign_key: :requestee_id

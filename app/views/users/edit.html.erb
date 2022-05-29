@@ -1,9 +1,7 @@
 <div class="container">
   <div class="columns is-centered">
     <div class="column has-text-centered">
-      <figure class="image is-128x128">
-        <%= image_tag "https://bulma.io/images/placeholders/128x128.png", class: "is-rounded" %>
-      </figure>
+      <%= render 'avatar', user: @user %>
     </div>
     <div class="column is-two-thirds">
         <div class="content">

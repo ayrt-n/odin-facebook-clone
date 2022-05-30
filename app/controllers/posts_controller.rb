@@ -49,7 +49,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
 
-    redirect_to posts_path, status: 303
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
+    end
   end
 
   private

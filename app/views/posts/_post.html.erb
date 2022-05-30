@@ -15,5 +15,5 @@
   <% post.comments.each do |comment| %>
     <%= render 'comments/comment', comment: comment, post: post %>
   <% end %>
-  <%= render 'comments/comment_form', new_comment: new_comment, post: post %>
+  <%= render 'comments/comment_form', new_comment: @new_comment, post: post %>
 </div>

@@ -8,7 +8,6 @@ RSpec.describe 'Deleting a post', type: :system do
 
     visit posts_path
     expect(page).to have_content(post_content)
-    print page.html
 
     find(:css, 'i.far.fa-trash-alt').click
     accept_alert

@@ -1,19 +1,21 @@
-<div class="box">
-  <div class="content">
-    <nav class="level">
-      <div class="level-left">
-        <h5><%= link_to post.user.username, post.user, class: "has-text-dark" %></h5>
-      </div>
-      <% if user_signed_in? && current_user == post.user %>
-        <%= render 'posts/post_controls', post: post %>
-      <% end %>
-    </nav>
-    <p><%= simple_format(post.body) %></p>
+<%= turbo_frame_tag post do %>
+  <div class="box mb-4">
+    <div class="content">
+      <nav class="level">
+        <div class="level-left">
+          <h5><%= link_to post.user.username, post.user, class: "has-text-dark" %></h5>
+        </div>
+        <% if user_signed_in? && current_user == post.user %>
+          <%= render 'posts/post_controls', post: post %>
+        <% end %>
+      </nav>
+      <p><%= simple_format(post.body) %></p>
+    </div>
+    <%= render 'posts/post_likes', post: post %>
+    <hr>
+    <% post.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment, post: post %>
+    <% end %>
+    <%= render 'comments/comment_form', new_comment: @new_comment, post: post %>
   </div>
-  <%= render 'posts/post_likes', post: post %>
-  <hr>
-  <% post.comments.each do |comment| %>
-    <%= render 'comments/comment', comment: comment, post: post %>
-  <% end %>
-  <%= render 'comments/comment_form', new_comment: @new_comment, post: post %>
-</div>
+<% end %>

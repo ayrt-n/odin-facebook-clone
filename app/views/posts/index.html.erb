@@ -1,8 +1,10 @@
 <div class="columns">
   <div class="column"></div>
   <div class="column is-two-thirds">
-    <%= render 'post_form', post: @post %>  
-    <%= render @posts, new_comment: @new_comment %>
+    <%= turbo_frame_tag id= "new_post", src: new_post_path %>
+    <div id="posts">
+      <%= render @posts %>
+    </div>
   </div>
   <div class="column"></div>
 </div>

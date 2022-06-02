@@ -3,7 +3,7 @@
     <div class="content">
       <nav class="level">
         <div class="level-left">
-          <h5><%= link_to post.user.username, post.user, class: "has-text-dark" %></h5>
+          <h5><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></h5>
         </div>
         <% if user_signed_in? && current_user == post.user %>
           <%= render 'posts/post_controls', post: post %>

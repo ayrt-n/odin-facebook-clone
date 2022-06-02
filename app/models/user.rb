@@ -28,8 +28,6 @@ class User < ApplicationRecord
   scope :not_friends_with, -> (user) { where.not(id: user.friends.ids.push(user.id)) }
 
   def self.from_omniauth(auth)
-    puts 'auth is:'
-    puts auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.username = auth.info.nickname
       user.email = auth.info.email

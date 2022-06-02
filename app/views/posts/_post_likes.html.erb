@@ -3,7 +3,7 @@
   <% if post.liked? %>
     <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} like this." %>
   <% end %>
-  <% if post.likes.exists?(user_id: current_user) %>
+  <% if @current_user_likes.include?(post.id) %>
     <%= link_to post_like_path(post), class: "has-text-dark", method: :delete, data: { turbo_method: :delete } do %>
       <i class="fas fa-thumbs-up" alt="unlike"></i>
     <% end %>

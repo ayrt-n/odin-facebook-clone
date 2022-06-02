@@ -1,16 +1,13 @@
 class PostsController < ApplicationController
   before_action :verify_post_author, only: [:edit, :update, :destroy]
+  before_action :create_new_comment, only: [:index, :show, :create]
 
   def index
-    @friends = current_user.friends.ids.push(current_user.id)
-    @posts = Post.includes({ comments: :user }, :likes, :user).posted_by(@friends).order('created_at DESC')
-    @current_user_likes = Post.includes(:likes).where(likes: { user_id: current_user }).ids
-    @new_comment = Comment.new
+    @posts = Post.timeline_by_users(current_user.friends_list)
   end
 
   def show
-    @post = Post.find(params[:id]).includes(:comments, :likes)
-    @new_comment = Comment.new
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -19,15 +16,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @current_user_likes = Post.includes(:likes).where(likes: { user_id: current_user }).ids
-    @new_comment = Comment.new
 
     respond_to do |format|
       if @post.save
         format.turbo_stream { render turbo_stream: turbo_stream.prepend('posts', @post) }
       else
-        @posts = Post.includes({ comments: :user }, :likes, :user).posted_by(@friends).order('created_at DESC')
-
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -70,5 +63,9 @@ class PostsController < ApplicationController
       flash[:alert] = "You do not have the correct permissions to do this"
       redirect_to posts_path
     end
+  end
+
+  def create_new_comment
+    @new_comment = Comment.new
   end
 end

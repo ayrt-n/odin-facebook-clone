@@ -3,12 +3,13 @@ class PostsController < ApplicationController
 
   def index
     @friends = current_user.friends.ids.push(current_user.id)
-    @posts = Post.posted_by(@friends).order('created_at DESC')
+    @posts = Post.includes({ comments: :user }, :likes, :user).posted_by(@friends).order('created_at DESC')
+    @current_user_likes = Post.includes(:likes).where(likes: { user_id: current_user }).ids
     @new_comment = Comment.new
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]).includes(:comments, :likes)
     @new_comment = Comment.new
   end
 
@@ -18,13 +19,14 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @current_user_likes = Post.includes(:likes).where(likes: { user_id: current_user }).ids
     @new_comment = Comment.new
 
     respond_to do |format|
       if @post.save
         format.turbo_stream { render turbo_stream: turbo_stream.prepend('posts', @post) }
       else
-        @posts = Post.all.order('created_at DESC')
+        @posts = Post.includes({ comments: :user }, :likes, :user).posted_by(@friends).order('created_at DESC')
 
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -51,6 +53,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
+      format.html { redirect_to posts_path, status: 303 }
     end
   end
 

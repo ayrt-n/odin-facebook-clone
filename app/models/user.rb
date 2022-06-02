@@ -39,6 +39,11 @@ class User < ApplicationRecord
     self.friend_ids << self.id
   end
 
+  def incoming_friend_request?(user)
+    friend_requests = self.incoming_friend_requests.collect(&:requester_id)
+    friend_requests.include?(user.id)
+  end
+
   private
 
   def add_default_avatar

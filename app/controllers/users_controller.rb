@@ -1,16 +1,11 @@
 class UsersController < ApplicationController
   def index
-    # Load all users not currently friends with the current user
-    @users = User.not_friends_with(current_user)
-
-    # Load pending friend requests to determine available action in view
-    @current_user_pending_friend_ids = current_user.pending_friend_ids
+    @users = User.not_friends_with(current_user).includes(:incoming_friend_requests)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.includes(:comments, :likes).order("created_at DESC")
-    @current_user_likes = @user.posts.includes(:likes).where(likes: { user_id: current_user })
+    @posts = Post.timeline_by_users(@user)
     @new_comment = Comment.new
   end
 

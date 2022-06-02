@@ -35,6 +35,10 @@ class User < ApplicationRecord
     end
   end
 
+  def friends_list
+    self.friend_ids << self.id
+  end
+
   private
 
   def add_default_avatar

@@ -1,5 +1,5 @@
-<div>
-  <%= form_with model: [post, new_comment] do |comment_form| %>
+<%= turbo_frame_tag id="new_comment" do %>
+  <%= form_with model: [post, comment] do |comment_form| %>
     <div class="field has-addons">
       <div class="control is-expanded">
         <%= comment_form.label :body, class: "is-hidden" %>
@@ -10,4 +10,4 @@
       </div>
     </div>
   <% end %>
-</div>
+<% end %>

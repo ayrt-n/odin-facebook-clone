@@ -13,9 +13,13 @@
     </div>
     <%= render 'posts/post_likes', post: post %>
     <hr>
-    <% post.comments.each do |comment| %>
-      <%= render 'comments/comment', comment: comment, post: post %>
+    <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
+      <% post.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment, post: post %>
+      <% end %>
+    </div>
+    <%= turbo_frame_tag "new_comment" do %> 
+      <%= render 'comments/comment_form', comment: @new_comment, post: post %>
     <% end %>
-    <%= render 'comments/comment_form', new_comment: @new_comment, post: post %>
   </div>
 <% end %>

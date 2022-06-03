@@ -12,7 +12,9 @@
       <p><%= simple_format(post.body) %></p>
     </div>
     <hr>
-    <%= render 'posts/post_likes', post: post %>
+    <%= turbo_frame_tag "post_#{post.id}_likes" do %>
+      <%= render 'posts/post_likes', post: post %>
+    <% end %>
     <hr>
     <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
       <% post.comments.each do |comment| %>

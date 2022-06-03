@@ -11,6 +11,7 @@
       </nav>
       <p><%= simple_format(post.body) %></p>
     </div>
+    <hr>
     <%= render 'posts/post_likes', post: post %>
     <hr>
     <div id=<%= "post_#{post.id}_comments" %> class="mb-5">

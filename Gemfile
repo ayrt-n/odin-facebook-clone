@@ -90,3 +90,8 @@ gem 'omniauth-rails_csrf_protection'
 
 # Figaro for storing ENV variables
 gem 'figaro'
+
+# Letter opener for testing mailers in development
+gem 'letter_opener', group: :development
+
+gem 'byebug'

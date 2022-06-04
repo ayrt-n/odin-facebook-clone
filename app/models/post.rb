@@ -18,4 +18,8 @@ class Post < ApplicationRecord
     liked_by = likes.collect(&:user_id)
     liked_by.include?(user.id)
   end
+
+  def edited?
+    created_at != updated_at
+  end
 end

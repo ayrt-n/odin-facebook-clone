@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# Stop letter_opener from opening emails while seeding
+ActionMailer::Base.perform_deliveries = false
+
+# Generate seed data
 u1 = User.create(username: Faker::Name.name, email: 'tester1@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
 u2 = User.create(username: Faker::Name.name, email: 'tester2@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)
 u3 = User.create(username: Faker::Name.name, email: 'tester3@gmail.com', password: 'password', bio: Faker::Lorem.paragraph)

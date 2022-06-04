@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   after_commit :add_default_avatar, on: [:create, :update]
+  after_create :send_welcome_email
 
   scope :not_friends_with, -> (user) { where.not(id: user.friends.ids.push(user.id)) }
 
@@ -57,5 +58,9 @@ class User < ApplicationRecord
         content_type: 'image/png'
       )
     end
+  end
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_now
   end
 end

@@ -4,9 +4,9 @@
       <%= render 'avatar', user: @user %>
     </div>
     <div class="column is-two-thirds">
-        <div class="content">
-          <%= render 'user_form', user: @user %>
-        </div>
+      <div class="mb-3"><%= render 'user_form', user: @user %></div>
+      <div class="mb-1"><%= link_to "Change email/password or cancel account", edit_user_registration_path %></div>
+      <div><%= link_to "Back", :back %></div>
     </div>
     <div class="column"></div>
   </div>

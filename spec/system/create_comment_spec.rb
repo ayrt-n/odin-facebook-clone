@@ -10,7 +10,7 @@ RSpec.describe 'Creating a comment', type: :system do
     visit posts_path
     fill_in 'New comment', with: 'Test comment!'
     click_on 'Create Comment'
-    visit posts_path
+
     expect(page).to have_content('Test comment!')
   end
 end

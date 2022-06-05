@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Deleting a comment', type: :system do
   before do
     user_with_post = FactoryBot.create(:user_with_post)
-    user_comment = FactoryBot.create(:user)
+    user_no_post = FactoryBot.create(:user)
     user_no_post.friends << user_with_post
 
     login_as(user_no_post, :scope => :user)

@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def welcome_email
     @user = params[:user]
-    @url = 'http://example.com/login'
-    mail(to: @user.email, subjust: 'Welcome to FaceBuddies!')
+    @login_url = new_user_session_url
+    mail(to: @user.email, subject: 'Welcome to FaceBuddies!')
   end
 end

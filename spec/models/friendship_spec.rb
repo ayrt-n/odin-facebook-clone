@@ -36,4 +36,13 @@ RSpec.describe Friendship, type: :model do
       expect(@u2.incoming_friend_requests).to be_empty
     end
   end
+
+  context '#check_self_friendship' do
+    it 'prevents user from creating Friendship with self and adds error message' do
+      self_friendship = @u1.friendships.build(user: @u1, friend: @u1)
+
+      expect(self_friendship).not_to be_valid
+      expect(self_friendship.errors.full_messages).to include("User can't be friend with self")
+    end
+  end
 end

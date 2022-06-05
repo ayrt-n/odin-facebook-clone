@@ -1,4 +1,5 @@
 <%= form_with model: @user do |form| %>
+  <%= render "devise/shared/error_messages", resource: @user %>
   <div class="field">
     <%= form.label :username, class: "label" %>
     <div class="control">

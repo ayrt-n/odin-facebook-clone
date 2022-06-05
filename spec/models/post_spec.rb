@@ -51,4 +51,17 @@ RSpec.describe Post, type: :model do
       expect(@post.edited?).to eql(false)
     end
   end
+
+  context '#posted_by' do
+    it 'queries all posts by the specified users' do
+      @user.posts.create(body: 'Another post') # Add another post by @user to query
+      second_user = FactoryBot.create(:user_with_post) # Create another user with post to query
+      third_user = FactoryBot.create(:user_with_post) # Create another user with post who we don't want to query
+
+      users = [@user, second_user] # Users we want to query posts from
+      posts = @user.posts << second_user.posts # Posts we want to have queried
+
+      expect(Post.posted_by(users)).to eq(posts)
+    end
+  end
 end

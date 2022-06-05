@@ -9,5 +9,10 @@
         <%= comment_form.submit class: "button is-link" %>
       </div>
     </div>
+    <% if comment.errors.any? %>
+      <% comment.errors.full_messages.each do |msg| %>
+        <p class="help is-danger mt-1"><%= msg %></p>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>

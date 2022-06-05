@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
           }
         format.html { redirect_to @post }
       else
-        format.html{ render :new, status: :unprocessable_entity }
+        format.html{ render partial: 'comment_form', locals: { comment: @comment, post: @post }, status: :unprocessable_entity }
       end
     end
   end

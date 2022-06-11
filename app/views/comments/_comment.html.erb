@@ -1,13 +1,23 @@
 <%= turbo_frame_tag comment do %>
-  <div class="content mb-2">
-    <nav class="level mb-2">
-      <div class="level-left">
-        <h6 class="mb-0"><%= link_to comment.user.username, comment.user, class: "has-text-dark", data: { turbo_frame: "_top" } %></h6>
+  <article class="media">
+    <figure class="media-left ml-1">
+      <p class="image is-48x48">
+        <%= image_tag comment.user.avatar, class: "is-rounded" %>
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= link_to comment.user.username, comment.user, class: "has-text-dark", data: { turbo_frame: "_top" } %></strong>
+          <br>
+          <%= simple_format(comment.body) %>
+        </p>
       </div>
+    </div>
+    <div class="media-right">
       <% if user_signed_in? && current_user == comment.user %>
         <%= render '/comments/comment_controls', comment: comment, post: post %>
       <% end %>
-    </nav>
-    <%= simple_format(comment.body) %>
-  </div>
+    </div>
+  </article>
 <% end %>

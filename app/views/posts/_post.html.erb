@@ -1,27 +1,39 @@
 <%= turbo_frame_tag post do %>
   <div class="box mb-4">
-    <div class="content mb-2">
-      <nav class="level">
-        <div class="level-left">
-          <h5 class="level-item mb-0"><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></h5>
+    <article class="media">
+      <figure class="media-left ml-1">
+        <p class="image is-64x64">
+          <%= image_tag post.user.avatar, class: "is-rounded" %>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></strong>
+            <small>Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
+            <br>
+            <%= simple_format(post.body) %>
+          </p>
         </div>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <%= turbo_frame_tag "post_#{post.id}_likes" do %>
+              <%= render 'posts/post_likes', post: post %>
+            <% end %>
+          </div>
+        </nav>
+        <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
+          <% post.comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment, post: post %>
+          <% end %>
+        </div>
+        <%= render 'comments/comment_form', comment: @new_comment, post: post %>
+      </div>
+      <div class="media-right">
         <% if user_signed_in? && current_user == post.user %>
           <%= render 'posts/post_controls', post: post %>
         <% end %>
-      </nav>
-      <%= simple_format(post.body) %>
-      <small>Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
-    </div>
-    <hr class="mb-2 mt-2">
-    <%= turbo_frame_tag "post_#{post.id}_likes" do %>
-      <%= render 'posts/post_likes', post: post %>
-    <% end %>
-    <hr class="mt-2">
-    <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
-      <% post.comments.each do |comment| %>
-        <%= render 'comments/comment', comment: comment, post: post %>
-      <% end %>
-    </div>
-    <%= render 'comments/comment_form', comment: @new_comment, post: post %>
+      </div>
+    </article>
   </div>
 <% end %>

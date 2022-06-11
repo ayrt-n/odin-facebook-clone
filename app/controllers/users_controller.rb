@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def index
-    @users = User.not_friends_with(current_user).includes(:incoming_friend_requests, :outgoing_friend_requests)
+    @users = User.not_friends_with(current_user)
+                 .includes(:incoming_friend_requests, :outgoing_friend_requests)
+                 .with_attached_avatar
   end
 
   def show

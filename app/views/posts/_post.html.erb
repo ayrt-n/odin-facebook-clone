@@ -29,7 +29,7 @@
         </div>
         <%= render 'comments/comment_form', comment: @new_comment, post: post %>
       </div>
-      <div class="media-right">
+      <div class="media-right" style="width:48px">
         <% if user_signed_in? && current_user == post.user %>
           <%= render 'posts/post_controls', post: post %>
         <% end %>

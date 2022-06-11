@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#incoming_friend_request?' do
+  context '#pending_friend_request_from?' do
     before do
       @second_user = FactoryBot.create(:user)
     end
@@ -19,17 +19,17 @@ RSpec.describe User, type: :model do
     it 'returns true if user has an incoming FriendRequest from specified user' do
       @second_user.outgoing_friend_requests.create(requestee: @user)
 
-      expect(@user.incoming_friend_request?(@second_user)).to eql(true)
+      expect(@user.pending_friend_request_from?(@second_user)).to eql(true)
     end
 
     it 'returns false if user does not have an incoming FriendRequest from specified user' do
-      expect(@user.incoming_friend_request?(@second_user)).to eql(false)
+      expect(@user.pending_friend_request_from?(@second_user)).to eql(false)
     end
 
     it 'returns false if user has an outgoing FriendRequest to a specified user but no incoming' do
       @user.outgoing_friend_requests.create(requestee: @second_user)
 
-      expect(@user.incoming_friend_request?(@second_user)).to eql(false)
+      expect(@user.pending_friend_request_from?(@second_user)).to eql(false)
     end
   end
 end

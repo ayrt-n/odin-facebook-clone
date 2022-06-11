@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   scope :not_friends_with, -> (user) { where.not(id: user.friends.ids.push(user.id)) }
 
+  # Find or create new user using Omniauth
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.username = auth.info.nickname
@@ -36,15 +37,18 @@ class User < ApplicationRecord
     end
   end
 
+  # Return list of friends ids and current user id as array
   def friends_list
     self.friend_ids << self.id
   end
 
-  def incoming_friend_request?(user)
+  # Check if user has a pending friend request from another user, returns true or false
+  def pending_friend_request_from?(user)
     friend_requests = self.incoming_friend_requests.collect(&:requester_id)
     friend_requests.include?(user.id)
   end
 
+  # Check if user has any incoming friend requests, returns true or false
   def incoming_friend_requests?
     return false if self.incoming_friend_requests_count.nil? || self.incoming_friend_requests_count.zero?
 
@@ -53,6 +57,7 @@ class User < ApplicationRecord
 
   private
 
+  # Add default avatar to user if no avatar attached
   def add_default_avatar
     unless avatar.attached?
       avatar.attach(
@@ -66,6 +71,7 @@ class User < ApplicationRecord
     end
   end
 
+  # Send out welcome email to user using UserMailer
   def send_welcome_email
     UserMailer.with(user: self).welcome_email.deliver_now
   end

@@ -45,6 +45,12 @@ class User < ApplicationRecord
     friend_requests.include?(user.id)
   end
 
+  def incoming_friend_requests?
+    return false if self.incoming_friend_requests_count.nil? || self.incoming_friend_requests_count.zero?
+
+    true
+  end
+
   private
 
   def add_default_avatar

@@ -11,10 +11,15 @@
         <% end %>
       <% end %>
     </div>
-    <div class="field">
+    <div class="field is-grouped">
       <div class="control">
         <%= form.submit class: "button is-link" %>
       </div>
+      <% unless post.new_record? %>
+        <div class="controls">
+          <%= link_to "Cancel", :back, class: "button is-light" %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

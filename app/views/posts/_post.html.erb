@@ -10,7 +10,7 @@
         <div class="content">
           <p>
             <strong><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></strong>
-            <small>Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
+            <small> · Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
             <br>
             <%= simple_format(post.body) %>
           </p>

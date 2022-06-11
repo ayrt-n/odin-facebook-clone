@@ -6,7 +6,8 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :posted_by, -> (users) { where user: users }
-  scope :timeline_by_users, -> (users) { includes({ comments: :user }, { likes: :user }, :user).posted_by(users).order('created_at DESC') }
+  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, { likes: :user },
+                                         { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
 
   def liked?
     return false if self.likes_count.nil? || self.likes_count.zero?

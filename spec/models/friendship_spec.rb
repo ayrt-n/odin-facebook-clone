@@ -31,9 +31,10 @@ RSpec.describe Friendship, type: :model do
       @u1.friendships.create(user: @u1, friend: @u2)
 
       @u1.reload
+      @u2.reload
 
-      expect(@u1.outgoing_friend_requests).to be_empty
-      expect(@u2.incoming_friend_requests).to be_empty
+      expect(@u1.outgoing_friend_requests).not_to be_any
+      expect(@u2.incoming_friend_requests).not_to be_any
     end
   end
 

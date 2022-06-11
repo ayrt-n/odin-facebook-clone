@@ -22,7 +22,12 @@
         <% if user_signed_in? %>
           <%= link_to "Friends List", friendships_path, class: "navbar-item" %>
           <%= link_to "Find New Friends", users_path, class: "navbar-item" %>
-          <%= link_to "Friend Requests", friend_requests_path, class: "navbar-item" %>
+          <%= link_to friend_requests_path, class: "navbar-item" do %>
+            Friend Requests
+              <% if current_user.incoming_friend_requests? %>
+                <span class="tag is-danger ml-2"><%= current_user.incoming_friend_requests_count %></span>
+              <% end %>
+          <% end %>
           <div class="navbar-item">
             <div class="buttons">
               <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "button is-light" %>
@@ -63,8 +68,5 @@
 
     <div class="content"><%= yield %></div>
 
-    <% if user_signed_in? %>
-      <div><%= "Logged in as #{current_user.email}" %></div>
-    <% end %>
   </body>
 </html>

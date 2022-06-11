@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   # Avatar associations
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
 
   after_commit :add_default_avatar, on: [:create, :update]
   after_create :send_welcome_email

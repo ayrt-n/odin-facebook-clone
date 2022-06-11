@@ -42,9 +42,10 @@ class User < ApplicationRecord
     self.friend_ids << self.id
   end
 
-  # Check if user has a pending friend request from another user, returns true or false
-  def pending_friend_request_from?(user)
+  # Check if user has a pending friend request with another user, returns true or false
+  def pending_friend_request?(user)
     friend_requests = self.incoming_friend_requests.collect(&:requester_id)
+    friend_requests = friend_requests.concat(self.outgoing_friend_requests.collect(&:requestee_id))
     friend_requests.include?(user.id)
   end
 

@@ -3,7 +3,9 @@ class FriendRequestsController < ApplicationController
 
   def index
     @incoming_friend_requests = current_user.incoming_friend_requests
+                                            .includes({ requester: [{ avatar_attachment: :blob }] })
     @outgoing_friend_requests = current_user.outgoing_friend_requests
+                                            .includes({ requestee: [{ avatar_attachment: :blob }] })
   end
 
   def create

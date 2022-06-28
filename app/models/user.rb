@@ -9,9 +9,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   # Friendship-system associations
-  has_many :outgoing_friend_requests, class_name: 'FriendRequest', foreign_key: :requester_id, dependent: :destroy
-  has_many :incoming_friend_requests, class_name: 'FriendRequest', foreign_key: :requestee_id, dependent: :destroy
+  has_many :outgoing_friend_requests, -> { where accepted: false }, class_name: 'FriendRequest', foreign_key: :requester_id, dependent: :destroy
+  has_many :incoming_friend_requests, -> { where accepted: false }, class_name: 'FriendRequest', foreign_key: :requestee_id, dependent: :destroy
   has_many :pending_friends, through: :outgoing_friend_requests, source: :requestee
+
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
@@ -26,7 +27,7 @@ class User < ApplicationRecord
   after_commit :add_default_avatar, on: [:create, :update]
   after_create :send_welcome_email
 
-  scope :not_friends_with, -> (user) { where.not(id: user.friends.ids.push(user.id)) }
+  scope :not_friends_with, -> (user) { where.not(id: user.friends_list) }
 
   # Find or create new user using Omniauth
   def self.from_omniauth(auth)
@@ -39,7 +40,19 @@ class User < ApplicationRecord
 
   # Return list of friends ids and current user id as array
   def friends_list
-    self.friend_ids << self.id
+    friend_array = friendz.map do |friend|
+      if friend.requester_id == id
+        friend.requestee_id
+      else
+        friend.requester_id
+      end 
+    end
+
+    friend_array << id
+  end
+
+  def friendz
+    FriendRequest.accepted_friend_requests(self)
   end
 
   # Check if user has a pending friend request with another user, returns true or false

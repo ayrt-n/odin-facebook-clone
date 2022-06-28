@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_11_133429) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_19_205216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_133429) do
     t.bigint "requestee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "accepted", default: false
     t.index ["requestee_id"], name: "index_friend_requests_on_requestee_id"
     t.index ["requester_id", "requestee_id"], name: "index_friend_requests_on_requester_id_and_requestee_id", unique: true
     t.index ["requester_id"], name: "index_friend_requests_on_requester_id"

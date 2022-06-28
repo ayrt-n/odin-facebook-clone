@@ -21,22 +21,15 @@ class FriendRequestsController < ApplicationController
 
   def accept
     @friend_request = FriendRequest.find(params[:id])
-    @friendship = current_user.friendships.build(friend: @friend_request.requester)
 
-    if @friendship.save
-      @friend_request.destroy
-      flash[:notice] = 'Friend request accepted!'
-      redirect_to friend_requests_path
-    else
-      redirect_to friend_requests_path
-    end
+    flash[:notice] = 'Friend request accepted!' if @friend_request.update(accepted: true)
+    redirect_to friend_requests_path
   end
 
   def decline
     @friend_request = FriendRequest.find(params[:id])
-    @friend_request.destroy
 
-    flash[:alert] = 'Friend request declined!'
+    flash[:alert] = 'Friend request declined!' if @friend_request.destroy
     redirect_to friend_requests_path
   end
 

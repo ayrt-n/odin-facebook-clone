@@ -18,7 +18,7 @@ u5 = User.create(username: Faker::Name.name, email: 'tester5@gmail.com', passwor
 
 FriendRequest.create(requester: u2, requestee: u1)
 FriendRequest.create(requester: u3, requestee: u1)
-FriendRequest.create(user: u1, friend: u4, accepted: true)
+FriendRequest.create(requester: u1, requestee: u4, accepted: true)
 
 u4.posts.create(body: 'I seeded this post!')
 u4.posts.create(body: 'I seeded this post x2!')

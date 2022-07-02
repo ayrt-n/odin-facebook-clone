@@ -46,9 +46,20 @@ class User < ApplicationRecord
     accepted_frs.map { |fr| fr.requester_id == id ? fr.requestee_id : fr.requester_id }
   end
 
+  # Return array of user pending friends ids
+  def pending_friends_ids
+    pending_frs = FriendRequest.pending_friend_requests(self)
+    pending_frs.map { |fr| fr.requester_id == id ? fr.requestee_id : fr.requester_id }
+  end  
+
   # Return array of user friends (users)
   def friends
     User.where(id: friends_ids)
+  end
+
+  # Check whether User is friends with another User, returns true or false
+  def friends_with?(user)
+    FriendRequest.friends?(self, user)
   end
 
   # Check if user has a pending friend request with another user, returns true or false

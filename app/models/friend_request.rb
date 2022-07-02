@@ -8,14 +8,17 @@ class FriendRequest < ApplicationRecord
   after_save :update_incoming_friend_requests_count
   after_destroy :update_incoming_friend_requests_count
 
-  # Scope to pull all accepted friend requests for a certain user (i.e., their friends)
-  scope :accepted_friend_requests, -> (user) {
+  # Scope to query all accepted friend requests for a certain user (i.e., their friends)
+  scope :accepted_friend_requests, ->(user) {
     where('accepted = true AND (requester_id = ? OR requestee_id = ?)',
           user.id, user.id)
   }
 
-  # Scope to include the requester and requestee user
-  scope :with_user, -> { includes(:requester, :requestee) }
+  # Scope to query all pending friend requests for a certain user
+  scope :pending_friend_requests, ->(user) {
+    where('accepted = false AND (requester_id = ? OR requestee_id = ?)',
+          user.id, user.id)
+  }
 
   private
 

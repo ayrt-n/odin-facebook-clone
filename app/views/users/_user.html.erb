@@ -7,7 +7,7 @@
     </figure>
     <div class="media-content">
       <h5><%= link_to user.username, user, class: "has-text-dark" %></h5>
-      <% if user.pending_friend_request?(current_user) %>
+      <% if @pending_friends_ids.include?(user.id) %>
         <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
       <% else %>
         <%= button_to "Send Friend Request", friend_requests_path(requestee_id: user), method: :post, data: { turbo_method: :post }, class: "button is-link" %>

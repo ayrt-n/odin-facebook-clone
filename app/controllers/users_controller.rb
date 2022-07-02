@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def index
     @users = User.not_friends_with(current_user)
-                 .includes(:incoming_friend_requests, :outgoing_friend_requests)
                  .with_attached_avatar
+
+    @pending_friends_ids = current_user.pending_friends_ids
   end
 
   def show
     @user = User.find(params[:id])
+    @is_friends = current_user.friends_with?(@user)
     @posts = Post.timeline_by_users(@user)
     @new_comment = Comment.new
   end

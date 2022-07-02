@@ -20,7 +20,6 @@
       </div>
       <div class="navbar-end">
         <% if user_signed_in? %>
-          <%= link_to "Friends List", friendships_path, class: "navbar-item" %>
           <%= link_to "Find New Friends", users_path, class: "navbar-item" %>
           <%= link_to friend_requests_path, class: "navbar-item" do %>
             Friend Requests

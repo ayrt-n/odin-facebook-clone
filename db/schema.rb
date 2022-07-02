@@ -63,16 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_205216) do
     t.index ["requester_id"], name: "index_friend_requests_on_requester_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
-    t.index ["user_id"], name: "index_friendships_on_user_id"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
@@ -114,5 +104,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_205216) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "friend_requests", "users", column: "requestee_id"
   add_foreign_key "friend_requests", "users", column: "requester_id"
-  add_foreign_key "friendships", "users", column: "friend_id"
 end

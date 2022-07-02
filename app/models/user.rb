@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :incoming_friend_requests, -> { where accepted: false }, class_name: 'FriendRequest',
                                                                     foreign_key: :requestee_id,
                                                                     dependent: :destroy
-  has_many :pending_friends, through: :outgoing_friend_requests, source: :requestee
 
   # Post-system associations
   has_many :posts, dependent: :destroy

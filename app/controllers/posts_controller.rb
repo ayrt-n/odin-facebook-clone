@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :verify_post_author, only: [:edit, :update, :destroy]
-  before_action :create_new_comment, only: [:index, :show, :create]
+  before_action :verify_post_author, only: %i[edit update destroy]
+  before_action :create_new_comment, only: %i[index show create]
 
   def index
-    @posts = Post.timeline_by_users(current_user.friends_list)
+    @posts = Post.timeline_by_users(current_user.friends_ids + [current_user.id])
   end
 
   def show
@@ -58,11 +58,10 @@ class PostsController < ApplicationController
 
   def verify_post_author
     @post = Post.find(params[:id])
+    return if current_user == @post.user
 
-    unless current_user == @post.user
-      flash[:alert] = "You do not have the correct permissions to do this"
-      redirect_to posts_path
-    end
+    flash[:alert] = 'You do not have the correct permissions to do this'
+    redirect_to posts_path
   end
 
   def create_new_comment

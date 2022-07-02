@@ -20,11 +20,16 @@ class FriendRequest < ApplicationRecord
           user.id, user.id)
   }
 
+  def self.friends?(user1, user2)
+    users = [user1, user2]
+    where(accepted: true).where(requester_id: users).where(requestee_id: users).present?
+  end
+
   private
 
   def update_incoming_friend_requests_count
     requestee.update_attribute(:incoming_friend_requests_count,
                                FriendRequest.where(accepted: false)
-                               .where(requestee: self.requestee).count)
+                               .where(requestee: requestee).count)
   end
 end

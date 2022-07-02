@@ -1,5 +1,5 @@
 class FriendRequestsController < ApplicationController
-  before_action :verify_user_friend_request, only: [:accept, :decline]
+  before_action :verify_user_friend_request, only: %i[accept decline]
 
   def index
     @incoming_friend_requests = current_user.incoming_friend_requests
@@ -11,25 +11,32 @@ class FriendRequestsController < ApplicationController
   def create
     @friend_request = current_user.outgoing_friend_requests.build(requestee_id: params[:requestee_id])
 
-    if @friend_request.save
-      redirect_to users_path
-    else
-      flash[:alert] = 'Ahh, something went wrong! We could not send a new friend request'
-      redirect_to users_path
-    end
+    flash[:alert] = 'Ahh, something went wrong! We could not send a new friend request' unless @friend_request.save
+
+    redirect_to users_path
   end
 
   def accept
     @friend_request = FriendRequest.find(params[:id])
 
-    flash[:notice] = 'Friend request accepted!' if @friend_request.update(accepted: true)
+    if @friend_request.update(accepted: true)
+      flash[:notice] = 'Friend request accepted!'
+    else
+      flash[:alert] = 'Ahh, something went wrong! Friend request could not be accepted'
+    end
+
     redirect_to friend_requests_path
   end
 
   def decline
     @friend_request = FriendRequest.find(params[:id])
 
-    flash[:alert] = 'Friend request declined!' if @friend_request.destroy
+    flash[:alert] = if @friend_request.destroy
+                      'Friend request declined!'
+                    else
+                      'Ahh, something went wrong! Friend request could not be accepted'
+                    end
+
     redirect_to friend_requests_path
   end
 
@@ -44,10 +51,9 @@ class FriendRequestsController < ApplicationController
 
   def verify_user_friend_request
     friend_request = FriendRequest.find(params[:id])
+    return if current_user == friend_request.requestee
 
-    unless current_user == friend_request.requestee
-      flash[:alert] = 'You do not have the correct permissions to do this'
-      redirect_to friend_requests_path
-    end
+    flash[:alert] = 'You do not have the correct permissions to do this'
+    redirect_to friend_requests_path
   end
 end

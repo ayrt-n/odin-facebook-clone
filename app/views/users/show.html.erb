@@ -4,31 +4,29 @@
       <%= render 'avatar', user: @user %>
       <% if current_user == @user %>
         <%= link_to "Edit Profile", edit_user_path(@user), class: "button is-link" %>
-      <% elsif @is_friends %>
-        <%# add unfriend button %>
+      <% elsif @friendship_status.empty? %>
+        <%= button_to "Send Friend Request", friend_requests_path(requestee_id: @user), method: :post, data: { turbo_method: :post }, class: "button is-link" %>
+      <% elsif @friendship_status.first.accepted %>
+        <%= button_to "Remove Friend", @friendship_status.first, method: :delete, form: { data: { turbo_method: :delete, turbo_confirm: "Are you sure you want unfriend?" } }, class: "button is-danger" %>
       <% else %>
-        <% if current_user.pending_friend_request?(@user) %>
-          <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
-        <% else %>
-          <%= button_to "Send Friend Request", friend_requests_path(requestee_id: @user), method: :post, data: { turbo_method: :post }, class: "button is-link" %>
-        <% end %>
+        <%= link_to "Pending Friend Request", friend_requests_path, class: "button is-light" %>
       <% end %>
     </div>
     <div class="column is-two-thirds">
-        <div class="content">
-          <h1><%= @user.username %></h1>
-          <% if @user.bio %>
-            <p><%= simple_format(@user.bio) %></p>
-          <% else %>
-            <% if user_signed_in? && current_user == @user %>
-              <%= link_to "Add bio", edit_user_path(@user) %>
-            <% end %>
+      <div class="content">
+        <h1><%= @user.username %></h1>
+        <% if @user.bio %>
+          <p><%= simple_format(@user.bio) %></p>
+        <% else %>
+          <% if user_signed_in? && current_user == @user %>
+            <%= link_to "Add bio", edit_user_path(@user) %>
           <% end %>
-          <% if current_user == @user || @is_friends %>
-            <h3>Recent Posts</h3>
-            <%= render @posts, new_comment: @new_comment%>
-          <% end %>
-        </div>
+        <% end %>
+        <% if current_user == @user || (!@friendship_status.first.nil? && @friendship_status.first.accepted) %>
+          <h3>Recent Posts</h3>
+          <%= render @posts, new_comment: @new_comment%>
+        <% end %>
+      </div>
     </div>
     <div class="column"></div>
   </div>

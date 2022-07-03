@@ -3,6 +3,7 @@ class FriendRequest < ApplicationRecord
   belongs_to :requestee, class_name: 'User'
 
   validates :requester_id, uniqueness: { scope: :requestee_id, message: 'friend request already exists' }
+  validate :check_self_friend_request
 
   # Callbacks to update conditional counter
   after_save :update_incoming_friend_requests_count
@@ -31,5 +32,9 @@ class FriendRequest < ApplicationRecord
     requestee.update_attribute(:incoming_friend_requests_count,
                                FriendRequest.where(accepted: false)
                                .where(requestee: requestee).count)
+  end
+
+  def check_self_friend_request
+    errors.add(:requester_id, "can't be friend with self") if requester == requestee
   end
 end

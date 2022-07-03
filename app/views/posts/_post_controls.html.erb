@@ -5,7 +5,7 @@
     <% end %>
   </div>
   <div class="level-item">
-    <%= link_to post, class: "has-text-dark", method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+    <%= link_to post, class: "has-text-dark", method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" } do %>
       <i class="far fa-trash-alt" alt="delete"></i>
     <% end %>
   </div>

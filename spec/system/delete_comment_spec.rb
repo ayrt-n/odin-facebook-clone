@@ -4,7 +4,7 @@ RSpec.describe 'Deleting a comment', type: :system do
   before do
     user_with_post = FactoryBot.create(:user_with_post)
     user_no_post = FactoryBot.create(:user)
-    user_no_post.friends << user_with_post
+    FactoryBot.create(:friend_request, requester: user_with_post, requestee: user_no_post, accepted: true)
 
     login_as(user_no_post, :scope => :user)
   end

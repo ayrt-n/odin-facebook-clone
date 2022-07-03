@@ -13,7 +13,7 @@ class FriendRequestsController < ApplicationController
 
     flash[:alert] = 'Ahh, something went wrong! We could not send a new friend request' unless @friend_request.save
 
-    redirect_to users_path
+    redirect_back(fallback_location: root_path)
   end
 
   def accept
@@ -44,7 +44,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
 
-    redirect_to friend_requests_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
@@ -54,6 +54,6 @@ class FriendRequestsController < ApplicationController
     return if current_user == friend_request.requestee
 
     flash[:alert] = 'You do not have the correct permissions to do this'
-    redirect_to friend_requests_path
+    redirect_back(fallback_location: root_path)
   end
 end

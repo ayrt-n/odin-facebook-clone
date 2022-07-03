@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @is_friends = current_user.friends_with?(@user)
+    @friendship_status = FriendRequest.where(requester_id: [current_user, @user])
+                                      .where(requestee_id: [current_user, @user])
     @posts = Post.timeline_by_users(@user)
     @new_comment = Comment.new
   end

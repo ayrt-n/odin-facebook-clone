@@ -26,15 +26,5 @@ RSpec.describe User, type: :system do
 
       expect(page).to have_content("Username can't be blank")
     end
-
-    it 'does not update user if username already taken' do
-      second_user = FactoryBot.create(:user, username: 'Testy_BotBoy')
-
-      visit edit_user_path(@user)
-      fill_in 'Username', with: 'Testy_BotBoy'
-      click_on 'Update User'
-
-      expect(page).to have_content('Username has already been taken')
-    end
   end
 end

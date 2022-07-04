@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
 
   context '#add_default_avatar' do
     it 'adds default avatar after create' do
+      user1
       expect(user1.avatar.attached?).to eql(true)
     end
   end

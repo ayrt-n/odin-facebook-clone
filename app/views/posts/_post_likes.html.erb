@@ -1,6 +1,6 @@
 <div>
   <% if post.liked? %>
-    <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} like this." %>
+    <%= "#{post.likes_count} #{"person".pluralize(post.likes_count)} #{post.likes_count > 1 ? 'like' : 'likes' } this" %>
   <% end %>
   <% if post.liked_by?(current_user) %>
     <%= link_to post_like_path(post), class: "has-text-dark", method: :delete, data: { turbo_method: :delete } do %>

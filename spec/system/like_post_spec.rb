@@ -12,9 +12,9 @@ RSpec.describe 'Liking and unliking a post', type: :system do
   scenario 'increases/decreases like counter after liking/unliking a post' do
     visit root_path
     find(:css, 'i.far.fa-thumbs-up').click # Like
-    expect(page).to have_content('1 person likes this.')
+    expect(page).to have_content('1 person likes this')
 
     find(:css, 'i.fas.fa-thumbs-up').click # Unlike
-    expect(page).not_to have_content('1 person likes this.')
+    expect(page).not_to have_content('1 person likes this')
   end
 end

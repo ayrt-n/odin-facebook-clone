@@ -4,6 +4,7 @@ FactoryBot.define do
     username { Faker::Name.name }
     email { Faker::Internet.email }
     password { 'password' }
+    incoming_friend_requests_count { 0 }
 
     factory :user_with_post do
       after(:create) do |user|

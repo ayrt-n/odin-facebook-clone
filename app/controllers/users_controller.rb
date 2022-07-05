@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     @new_comment = Comment.new
   end
 
+  def search
+    @users = User.not_friends_with(current_user)
+                 .where('lower(username) LIKE ?', "%#{User.sanitize_sql_like(params[:q])}%")
+                 .with_attached_avatar
+
+    @pending_friends_ids = current_user.pending_friends_ids
+
+    render 'index'
+  end
+
   def edit
     @user = User.find(params[:id])
   end

@@ -1,5 +1,5 @@
 <div class="box mb-5">
-  <%= form_with model: post do |form| %>
+  <%= form_with model: post, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |form| %>
     <div class="field">
       <div class="control">
         <%= form.label :body, class: "is-hidden" %>

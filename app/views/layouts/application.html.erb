@@ -12,6 +12,11 @@
 
   <body>
     <nav class="navbar mb-4" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <%= image_tag 'left_buddy.png' %>
+        <% end %>
+      </div>
       <div class="navbar-start">
         <%= link_to "Home", root_path, class: "navbar-item" %>
         <% if user_signed_in? %>

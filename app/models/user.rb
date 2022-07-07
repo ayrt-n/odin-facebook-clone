@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   # Scope to query for users which are not friends of a given user
   scope :not_friends_with, -> (user) { where.not(id: user.friends_ids + [user.id]) }
+  scope :filter_by_name, -> (name) { where('lower(username) LIKE ?', "%#{User.sanitize_sql_like(name)}%") }
 
   # Find or create new user using Omniauth
   def self.from_omniauth(auth)

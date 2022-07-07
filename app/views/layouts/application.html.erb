@@ -21,6 +21,7 @@
         <%= link_to "Home", root_path, class: "navbar-item" %>
         <% if user_signed_in? %>
           <%= link_to "Profile", user_path(current_user), class: "navbar-item" %>
+          <%= link_to "Friends", friends_path, class: "navbar-item" %>
         <% end %>
       </div>
       <div class="navbar-end">

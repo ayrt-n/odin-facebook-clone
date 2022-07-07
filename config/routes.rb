@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   # Routes for users
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
-  resources :users do
-    get 'search', on: :collection
-  end
+  resources :users
+  resources :friends, only: %i[index]
 
   # Routes for post-system
   resources :posts do

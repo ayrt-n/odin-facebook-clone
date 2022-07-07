@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @users = User.not_friends_with(current_user)
                  .with_attached_avatar
+    @users = @users.filter_by_name(params[:q]) if params[:q].present?
 
     @pending_friends_ids = current_user.pending_friends_ids
   end
@@ -12,16 +13,6 @@ class UsersController < ApplicationController
                                       .where(requestee_id: [current_user, @user])
     @posts = Post.timeline_by_users(@user)
     @new_comment = Comment.new
-  end
-
-  def search
-    @users = User.not_friends_with(current_user)
-                 .where('lower(username) LIKE ?', "%#{User.sanitize_sql_like(params[:q])}%")
-                 .with_attached_avatar
-
-    @pending_friends_ids = current_user.pending_friends_ids
-
-    render 'index'
   end
 
   def edit

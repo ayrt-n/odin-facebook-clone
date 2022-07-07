@@ -1,0 +1,10 @@
+<%= form_with url: request.fullpath, method: :get do |form| %>
+  <div class="field is-grouped mb-5">
+    <div class="control is-expanded">
+      <%= form.text_field :q, class: "input", placeholder: "Search" %>
+    </div>
+    <div class="control">
+      <%= form.submit "Search", class: "button" %>
+    </div>
+  </div>
+<% end %>

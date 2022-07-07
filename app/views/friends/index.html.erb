@@ -1,0 +1,8 @@
+<div class="columns">
+  <div class="column"></div>
+  <div class="column">
+    <%= render 'shared/search_form' %>
+    <%= render partial: 'friend', collection: @users, as: :friend %>
+  </div>
+  <div class="column"></div>
+</div>

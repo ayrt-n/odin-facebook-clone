@@ -9,6 +9,8 @@ class UserMailer < ApplicationMailer
     attachments.inline['left_buddy.png'] = File.read("#{Rails.root}/app/assets/images/left_buddy.png")
     attachments.inline['right_buddy.png'] = File.read("#{Rails.root}/app/assets/images/right_buddy.png")
 
+    @url = root_url
+
     mail(to: @user.email, subject: 'Welcome to FaceBuddies!')
   end
 end

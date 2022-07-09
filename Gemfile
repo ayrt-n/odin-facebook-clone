@@ -94,4 +94,8 @@ gem 'figaro'
 # Letter opener for testing mailers in development
 gem 'letter_opener', group: :development
 
-gem 'byebug'
+# Byebug for debugging in development
+gem 'byebug', group: :development
+
+# Amazon S3 gem for active storage
+gem 'aws-sdk-s3', require: false

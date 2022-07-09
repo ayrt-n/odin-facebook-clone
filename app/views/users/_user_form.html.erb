@@ -12,9 +12,9 @@
       <%= form.text_area :bio, class: "textarea" %>
     </div>
   </div>
-  <div class="file mb-3">
+  <div class="file has-name mb-3" data-controller="upload">
     <%= form.label :avatar, class: "file-label" do %>
-      <%= form.file_field :avatar, class: "file-input" %>
+      <%= form.file_field :avatar, class: "file-input", data: { action: "change->upload#display", upload_target: "input" } %>
       <span class="file-cta">
         <span class="file-icon">
           <i class="fas fa-upload"></i>
@@ -22,6 +22,9 @@
         <span class="file-label">
           Change avatar...
         </span>
+      </span>
+      <span class="file-name" data-upload-target="output">
+        No file selected.
       </span>
     <% end %>
   </div>

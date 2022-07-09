@@ -20,6 +20,6 @@ module OdinFacebookClone
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Configuration for action mailer
-    config.action_mailer.default_url_options = { host: 'radiant-hamlet-67578.herokuapp.com' }
+    # config.action_mailer.default_url_options = { host: 'radiant-hamlet-67578.herokuapp.com' }
   end
 end

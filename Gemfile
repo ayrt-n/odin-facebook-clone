@@ -99,3 +99,6 @@ gem 'byebug', group: :development
 
 # Amazon S3 gem for active storage
 gem 'aws-sdk-s3', require: false
+
+# SimpleCov to check test coverage
+gem 'simplecov', require: false, group: :test

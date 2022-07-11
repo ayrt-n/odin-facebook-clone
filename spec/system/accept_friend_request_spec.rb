@@ -9,6 +9,13 @@ RSpec.describe 'Accept a friend request', type: :system do
     login_as(@user1, :scope => :user)
   end
 
+  scenario 'successfully accepts friend request' do
+    visit friend_requests_path
+    click_on 'Accept'
+
+    expect(page).to have_content("Friend request accepted")
+  end
+
   scenario 'can see user posts after accepting friend request' do
     visit friend_requests_path
     click_on 'Accept'

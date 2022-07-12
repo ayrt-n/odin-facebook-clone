@@ -4,8 +4,6 @@
 
 Final project for the Ruby on Rails section of The Odin Project (https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) to create a "Facebook clone" using Ruby on Rails. 
 
-Final Ruby on Rails project for The Odin Project (https://www.theodinproject.com/) to create a game of chess, played through the command line.
-
 ## Set up
 ### Using web browser (Recommended)
 The easiest way to view and test out the app is online at: facebuddies.heroku.com

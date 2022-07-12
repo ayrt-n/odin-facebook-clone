@@ -15,6 +15,8 @@ class FriendRequest < ApplicationRecord
           user.id, user.id)
   }
 
+  scope :pending, -> { where(accepted: false) }
+
   # Scope to query all pending friend requests for a certain user
   scope :pending_friend_requests, ->(user) {
     where('accepted = false AND (requester_id = ? OR requestee_id = ?)',

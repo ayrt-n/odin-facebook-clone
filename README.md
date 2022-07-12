@@ -1,11 +1,19 @@
 # Ruby on Rails Facebook Clone 
 
+## Table of Contents
+- [Overview](#overview)
+- [Set Up](#set-up)
+   - [Using Web Browser](#using-web-browser) * RECOMMENDED *
+   - [Using Local Machine](#using-local-machine)
+- [Database Structure](#database-structure)
+- [Thoughts and Takeaways](#thoughts-and-takeaways)
+
 ## Overview
 
 Final project for the Ruby on Rails section of The Odin Project (https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) to create a "Facebook clone" using Ruby on Rails. 
 
-## Set up
-### Using web browser (Recommended)
+## Set Up
+### Using Web Browser
 The easiest way to view and test out the app is online at: facebuddies.heroku.com
 
 ### Using Local Machine
@@ -28,6 +36,8 @@ Once the database has been set up, you should be able to access the web applicat
 And opening a browser and navigating to:
 
 ```http://localhost:3000/```
+
+## Database Structure
 
 ## Thoughts and Takeaways
 

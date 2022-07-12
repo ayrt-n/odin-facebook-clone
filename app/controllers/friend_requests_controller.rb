@@ -2,9 +2,9 @@ class FriendRequestsController < ApplicationController
   before_action :verify_user_friend_request, only: %i[accept decline]
 
   def index
-    @incoming_friend_requests = current_user.incoming_friend_requests
+    @incoming_friend_requests = current_user.incoming_friend_requests.pending
                                             .includes({ requester: [{ avatar_attachment: :blob }] })
-    @outgoing_friend_requests = current_user.outgoing_friend_requests
+    @outgoing_friend_requests = current_user.outgoing_friend_requests.pending
                                             .includes({ requestee: [{ avatar_attachment: :blob }] })
   end
 
@@ -34,7 +34,7 @@ class FriendRequestsController < ApplicationController
     flash[:alert] = if @friend_request.destroy
                       'Friend request declined!'
                     else
-                      'Ahh, something went wrong! Friend request could not be accepted'
+                      'Ahh, something went wrong! Friend request could not be declined'
                     end
 
     redirect_to friend_requests_path

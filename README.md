@@ -10,7 +10,19 @@
 
 ## Overview
 
-Final project for the Ruby on Rails section of The Odin Project (https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) to create a "Facebook clone" using Ruby on Rails. 
+Final project for the Ruby on Rails section of The Odin Project (https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project). 
+
+The goal of the project was to rebuild a large portion of the core Facebook functionality. The basic requirements included:
+- Users must sign in to see anything except for the sign in page
+- Users can send Friend Requests to other users
+- Users must accept the Friend Request to become friends
+- Friend requests appear in the notifications section of the User's navbar
+- Users can create Posts
+- Users can Like Posts
+- Facebook timeline feature which displays all recent Posts from the current User and friends
+- Posts display Post content, author, Comments, and Likes
+- User show page contains profile information, photo, and Posts
+- User index page lists all Users which are not friends of the current User and buttons for sending Friend Requests
 
 ## Set Up
 ### Using Web Browser

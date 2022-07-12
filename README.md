@@ -26,7 +26,7 @@ The goal of the project was to rebuild a large portion of the core Facebook func
 
 ## Set Up
 ### Using Web Browser
-The easiest way to view and test out the app is online at: facebuddies.heroku.com
+The easiest way to view and test out the app is online at: facebuddies.herokuapp.com
 
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).

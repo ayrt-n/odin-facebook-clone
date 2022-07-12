@@ -1,24 +1,38 @@
-# README
+# Ruby on Rails Facebook Clone 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+Final project for the Ruby on Rails section of The Odin Project (https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) to create a "Facebook clone" using Ruby on Rails. 
 
-* Ruby version
+Final Ruby on Rails project for The Odin Project (https://www.theodinproject.com/) to create a game of chess, played through the command line.
 
-* System dependencies
+## Set up
+### Using web browser (Recommended)
+The easiest way to view and test out the app is online at: facebuddies.heroku.com
 
-* Configuration
+### Using Local Machine
+If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).
 
-* Database creation
+Once you have Ruby on Rails and PostgreSQL set up, clone the repo into a fresh directory and run:
 
-* Database initialization
+```bundle install```
 
-* How to run the test suite
+To install all of the gem dependencies for the project.
 
-* Services (job queues, cache servers, search engines, etc.)
+After the gem dependencies have been installed, you may create, migrate, and seed the database with the default schema and some example records by running:
 
-* Deployment instructions
+```rails db:create db:migrate db:seed```
 
-* ...
+Once the database has been set up, you should be able to access the web application by starting up a server using:
+
+```rails s```
+
+And opening a browser and navigating to:
+
+```http://localhost:3000/```
+
+## Thoughts and Takeaways
+
+Capstone project from The Odin Project, providing the opportunity to implement everything learned through the Ruby section of the curriculum (e.g., working with basic data types, OOP and design, serialization, testing and TDD).
+
+Beyond the technical aspects, this project provided the opportunity to get experience working with and solving a broadly scoped problem (final project did not provide any details on implementation). As such, I was required to think through the problem and implementation, maintain a disciplined workflow (utilizing git to safely experiment), stay organized, and break the problem down into workable components.

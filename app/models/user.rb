@@ -9,12 +9,12 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   # Friendship-system associations
-  has_many :outgoing_friend_requests, -> { where accepted: false }, class_name: 'FriendRequest',
-                                                                    foreign_key: :requester_id,
-                                                                    dependent: :destroy
-  has_many :incoming_friend_requests, -> { where accepted: false }, class_name: 'FriendRequest',
-                                                                    foreign_key: :requestee_id,
-                                                                    dependent: :destroy
+  has_many :outgoing_friend_requests, class_name: 'FriendRequest',
+                                      foreign_key: :requester_id,
+                                      dependent: :destroy
+  has_many :incoming_friend_requests, class_name: 'FriendRequest',
+                                      foreign_key: :requestee_id,
+                                      dependent: :destroy
 
   # Post-system associations
   has_many :posts, dependent: :destroy

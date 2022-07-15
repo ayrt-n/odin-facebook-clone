@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session['devise.github_data'] = request.env['omniauth.auth'].except(:extra)
       errors = @user.errors.full_messages.to_sentence.downcase
-      set_flash_message(:alert, :failure, kind: 'Github', reason: errors) if is_navigational_format?
+      flash[:alert] = "Could not authenticate you from Github because #{errors}" if is_navigational_format?
       redirect_to new_user_registration_url
     end
   end

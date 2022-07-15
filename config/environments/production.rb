@@ -69,7 +69,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Action mailer production settings
-  config.active_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',

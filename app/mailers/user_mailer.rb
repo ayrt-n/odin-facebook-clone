@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'ayrton.parkinson1@gmail.com'
   layout 'layouts/mailer'
 
   def welcome_email

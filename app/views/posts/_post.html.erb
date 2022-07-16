@@ -3,7 +3,7 @@
     <article class="media">
       <figure class="media-left ml-1">
         <p class="image is-64x64">
-          <%= image_tag post.user.avatar, class: "is-rounded" %>
+          <%= image_tag post.user.avatar.variant(resize_to_fill: [64, 64]), class: "is-rounded" %>
         </p>
       </figure>
       <div class="media-content">

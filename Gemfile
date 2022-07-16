@@ -102,3 +102,6 @@ gem 'aws-sdk-s3', require: false
 
 # SimpleCov to check test coverage
 gem 'simplecov', require: false, group: :test
+
+# Bullet gem to monitor and fix n+1 queries
+gem 'bullet', group: 'development'

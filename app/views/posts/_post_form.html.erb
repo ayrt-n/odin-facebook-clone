@@ -3,7 +3,7 @@
     <div class="field">
       <div class="control">
         <%= form.label :body, class: "is-hidden" %>
-        <%= form.text_area :body, class: "textarea", placeholder: "What's on your mind?" %>
+        <%= form.text_area :body, class: "textarea", placeholder: "What's on your mind?", data: { reset_form_target: "post" } %>
       </div>
       <% if post.errors.any? %>
         <% post.errors.full_messages.each do |msg| %>
@@ -15,22 +15,24 @@
       <div class="control">
         <%= form.submit class: "button is-link" %>
       </div>
-      <div class="file has-name mb-3" data-controller="upload">
-        <%= form.label :photo, class: "file-label" do %>
-          <%= form.file_field :photo, class: "file-input", data: { action: "change->upload#display", upload_target: "input" } %>
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
+      <% if post.new_record? %>
+        <div class="file has-name mb-3" data-controller="upload">
+          <%= form.label :photo, class: "file-label" do %>
+            <%= form.file_field :photo, class: "file-input", data: { action: "change->upload#display submit->upload#reset", upload_target: "input" } %>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Add photo...
+              </span>
             </span>
-            <span class="file-label">
-              Add photo...
+            <span class="file-name" data-upload-target="output" data-reset-form-target="upload">
+              No file selected.
             </span>
-          </span>
-          <span class="file-name" data-upload-target="output">
-            No file selected.
-          </span>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
       <% unless post.new_record? %>
         <div class="controls">
           <%= link_to "Cancel", :back, class: "button is-light" %>

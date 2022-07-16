@@ -15,6 +15,22 @@
       <div class="control">
         <%= form.submit class: "button is-link" %>
       </div>
+      <div class="file has-name mb-3" data-controller="upload">
+        <%= form.label :photo, class: "file-label" do %>
+          <%= form.file_field :photo, class: "file-input", data: { action: "change->upload#display", upload_target: "input" } %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Add photo...
+            </span>
+          </span>
+          <span class="file-name" data-upload-target="output">
+            No file selected.
+          </span>
+        <% end %>
+      </div>
       <% unless post.new_record? %>
         <div class="controls">
           <%= link_to "Cancel", :back, class: "button is-light" %>

@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :posted_by, -> (users) { where user: users }
-  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, { likes: :user },
+  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes,
                                          { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
 
   def liked?

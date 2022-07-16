@@ -2,11 +2,12 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_one_attached :photo
 
   validates :body, presence: true
 
   scope :posted_by, -> (users) { where user: users }
-  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes,
+  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes, { photo_attachment: :blob },
                                          { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
 
   def liked?

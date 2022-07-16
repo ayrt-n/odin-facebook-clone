@@ -12,6 +12,7 @@
             <strong><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></strong>
             <small> · Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
             <br>
+            <%= image_tag post.photo, class: "mt-5", style: "max-height: 500px" if post.photo.attached? %>
             <%= simple_format(post.body) %>
           </p>
         </div>

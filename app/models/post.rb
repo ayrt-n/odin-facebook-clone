@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_one_attached :photo
 
-  validates :body, presence: true
+  validates :body, presence: true, unless: :photo_attached?
 
   scope :posted_by, -> (users) { where user: users }
   scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes, { photo_attachment: :blob },
@@ -23,5 +23,11 @@ class Post < ApplicationRecord
 
   def edited?
     created_at != updated_at
+  end
+
+  private
+
+  def photo_attached?
+    photo.attached?
   end
 end

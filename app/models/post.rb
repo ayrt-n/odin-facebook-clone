@@ -10,6 +10,10 @@ class Post < ApplicationRecord
   scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes, { photo_attachment: :blob },
                                          { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
 
+  enum status: %i[unedited edited]
+
+  before_update :set_edit_status if unedited
+
   def liked?
     return false if self.likes_count.nil? || self.likes_count.zero?
 
@@ -21,13 +25,13 @@ class Post < ApplicationRecord
     liked_by.include?(user.id)
   end
 
-  def edited?
-    created_at != updated_at
-  end
-
   private
 
   def photo_attached?
     photo.attached?
+  end
+
+  def set_edit_status
+    self.status = 'edited' if changed?
   end
 end

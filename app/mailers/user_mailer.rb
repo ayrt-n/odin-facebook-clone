@@ -1,7 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: 'ayrton.parkinson1@gmail.com'
-  layout 'layouts/mailer'
-
   def welcome_email
     @user = params[:user]
     @home_url = root_url

@@ -1,5 +1,7 @@
-<figure class="image is-128x128">
-  <% if user.avatar.attached? %>
-    <%= image_tag user.avatar.variant(resize_to_fill: [128, 128]), class: "is-rounded" %>
-  <% end %>
-</figure>
+<div class="has-text-centered">
+  <figure class="image is-128x128 is-inline-block">
+    <% if user.avatar.attached? %>
+      <%= image_tag user.avatar.variant(resize_to_fill: [128, 128]), class: "is-rounded" %>
+    <% end %>
+  </figure>
+</div>

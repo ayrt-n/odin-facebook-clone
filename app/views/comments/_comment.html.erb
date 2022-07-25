@@ -1,6 +1,6 @@
 <%= turbo_frame_tag comment do %>
   <article class="media">
-    <figure class="media-left ml-1">
+    <figure class="media-left ml-1 is-hidden-mobile">
       <p class="image is-48x48">
         <%= image_tag comment.user.avatar.variant(resize_to_fill: [48, 48]), class: "is-rounded" %>
       </p>

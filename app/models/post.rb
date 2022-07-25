@@ -2,12 +2,17 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_one_attached :photo
 
-  validates :body, presence: true
+  validates :body, presence: true, unless: :photo_attached?
 
   scope :posted_by, -> (users) { where user: users }
-  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes,
+  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes, { photo_attachment: :blob },
                                          { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
+
+  enum status: %i[unedited edited]
+
+  before_update :set_edit_status if unedited
 
   def liked?
     return false if self.likes_count.nil? || self.likes_count.zero?
@@ -20,7 +25,13 @@ class Post < ApplicationRecord
     liked_by.include?(user.id)
   end
 
-  def edited?
-    created_at != updated_at
+  private
+
+  def photo_attached?
+    photo.attached?
+  end
+
+  def set_edit_status
+    self.status = 'edited' if changed?
   end
 end

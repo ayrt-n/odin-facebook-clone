@@ -1,11 +1,11 @@
-<div class="box pb-0">
+<div class="box">
   <article class="media">
-    <figure class="media-left">
+    <figure class="media-left m-0">
       <p class="image is-64x64">
         <%= image_tag friend.avatar.variant(resize_to_fill: [64, 64]), class: "is-rounded" %>
       </p>
     </figure>
-    <div class="media-content">
+    <div class="media-content has-text-centered">
       <h5><%= link_to friend.username, friend, class: "has-text-dark" %></h5>
     </div>
   </article>

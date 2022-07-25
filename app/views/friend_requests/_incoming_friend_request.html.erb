@@ -1,15 +1,15 @@
-<div class="box pb-0">
+<div class="box">
   <article class="media">
-    <figure class="media-left">
+    <figure class="media-left m-0">
       <p class="image is-64x64">
         <%= image_tag incoming_friend_request.requester.avatar.variant(resize_to_fill: [64, 64]), class: "is-rounded" %>
       </p>
     </figure>
-    <div class="media-content">
+    <div class="media-content has-text-centered">
       <h5><%= link_to incoming_friend_request.requester.username, incoming_friend_request.requester, class: "has-text-dark" %></h5>
-      <div class="field is-grouped">
-        <div class="control"><%= button_to "Accept", accept_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-link" %></div>
-        <div class="control"><%= button_to "Decline", decline_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-light" %></div>
+      <div class="field is-grouped is-flex is-justify-content-center">
+        <div class="control mr-2"><%= button_to "Accept", accept_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-link is-responsive" %></div>
+        <div class="control"><%= button_to "Decline", decline_friend_request_path(incoming_friend_request), method: :post, data: { turbo_method: :post }, class: "button is-light is-responsive" %></div>
       </div>
     </div>
   </article>

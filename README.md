@@ -23,6 +23,16 @@ The goal of the project was to rebuild a large portion of the core Facebook func
 - Posts display Post content, author, Comments, and Likes
 - User show page contains profile information, photo, and Posts
 - User index page lists all Users which are not friends of the current User and buttons for sending Friend Requests
+- Ability to sign in using Github OmnuAuth
+- Welcome email when new users sign up
+
+Beyond the basic requirements, I implemented a number of the suggested extra credit features and some of my own ideas:
+- Using Active storage and AWS S3, Users are able to upload photos to their profile or include photos in Posts
+- Users are able to search through their friends list or other Users to find who they are looking for
+- Integrated turbo frames/turbo stream into main posts page to improve UX and improve efficiency in loading/interacting with the page
+- Added sprinkles of JavaScript to improve UX using Stimulus (e.g., responsive 'burger' menu for mobile, responsive forms)
+- Styled with Bulma and responsive to mobile screens
+- Forgot password/password reset functionality through Devise
 
 ## Set Up
 ### Using Web Browser

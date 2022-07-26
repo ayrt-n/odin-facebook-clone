@@ -36,7 +36,7 @@ Beyond the basic requirements, I implemented a number of the suggested extra cre
 
 ## Set Up
 ### Using Web Browser
-The easiest way to view and test out the app is online at: [facebuddies.herokuapp.com](https://facebuddies.herokuapp.com/)
+The easiest way to view and test out the app is online at: https://facebuddies.herokuapp.com/
 
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).

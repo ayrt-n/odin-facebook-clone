@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  # Root route based on authentication
+  devise_scope :user do
+    authenticated :user do
+      root 'posts#index'
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
 
   # Routes for users
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }

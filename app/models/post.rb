@@ -7,8 +7,11 @@ class Post < ApplicationRecord
   validates :body, presence: true, unless: :photo_attached?
 
   scope :posted_by, -> (users) { where user: users }
-  scope :timeline_by_users, -> (users) { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }, :likes, { photo_attachment: :blob },
-                                         { user: [{ avatar_attachment: :blob }] }).posted_by(users).order('created_at DESC') }
+  scope :with_likes, -> { includes(:likes) }
+  scope :with_comments, -> { includes({ comments: [{ user: [{ avatar_attachment: :blob }] }] }) }
+  scope :with_user, -> { includes({ user: [{ avatar_attachment: :blob }] })}
+  scope :timeline_by_users, -> (users) { includes({ photo_attachment: :blob }).with_comments.with_likes.with_user
+                                                                              .posted_by(users).order('created_at DESC') }
 
   enum status: %i[unedited edited]
 

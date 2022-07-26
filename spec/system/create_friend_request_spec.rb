@@ -11,7 +11,7 @@ RSpec.describe 'Creating a friend request', type: :system do
   scenario 'requestee becomes pending friend' do
     visit users_path
     click_on 'Send Friend Request'
-    expect(page).to have_content('Pending Friend Request') # Updates friend request to pending
+    expect(page).to have_content('Pending Request') # Updates friend request to pending
 
     visit friend_requests_path
     expect(page).to have_content @user_2.username # Pending request shows up under list of pending friends

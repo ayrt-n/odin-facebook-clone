@@ -8,9 +8,8 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= link_to comment.user.username, comment.user, class: "has-text-dark", data: { turbo_frame: "_top" } %></strong>
-          <small> · Posted <%= time_ago_in_words(comment.created_at) %> ago</small>
-          <br>
+          <strong><%= link_to comment.user.username, comment.user, class: "has-text-dark", data: { turbo_frame: "_top" } %></strong><br>
+          <small>Posted <%= time_ago_in_words(comment.created_at) %> ago</small>
           <%= simple_format(comment.body) %>
         </p>
       </div>

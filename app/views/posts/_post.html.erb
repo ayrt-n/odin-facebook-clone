@@ -9,26 +9,10 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <strong><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></strong>
-            <small> · Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
-            <br>
-            <%= image_tag post.photo, class: "mt-5", style: "max-height: 500px" if post.photo.attached? %>
-            <%= simple_format(post.body) %>
+            <strong><%= link_to post.user.username, post.user, class: "has-text-dark", data: { turbo_frame: "_top"} %></strong><br>
+            <small>Posted <%= time_ago_in_words(post.created_at) %> ago <%= "· Edited" if post.edited? %></small>
           </p>
         </div>
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <%= turbo_frame_tag "post_#{post.id}_likes" do %>
-              <%= render 'posts/post_likes', post: post %>
-            <% end %>
-          </div>
-        </nav>
-        <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
-          <% post.comments.each do |comment| %>
-            <%= render 'comments/comment', comment: comment, post: post %>
-          <% end %>
-        </div>
-        <%= render 'comments/comment_form', comment: @new_comment, post: post %>
       </div>
       <div class="media-right">
         <% if user_signed_in? && current_user == post.user %>
@@ -36,5 +20,22 @@
         <% end %>
       </div>
     </article>
+    <%= image_tag post.photo, class: "mt-5", style: "max-height: 500px" if post.photo.attached? %>
+    <%= simple_format(post.body) %>
+    <hr>
+    <nav class="level is-mobile mb-0">
+      <div class="level">
+        <%= turbo_frame_tag "post_#{post.id}_likes" do %>
+          <%= render 'posts/post_likes', post: post %>
+        <% end %>
+      </div>
+    </nav>
+    <hr>
+    <div id=<%= "post_#{post.id}_comments" %> class="mb-5">
+      <% post.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment, post: post %>
+      <% end %>
+    </div>
+    <%= render 'comments/comment_form', comment: @new_comment, post: post %>
   </div>
 <% end %>

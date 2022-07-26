@@ -20,7 +20,7 @@
         <% end %>
       </div>
     </article>
-    <%= image_tag post.photo, class: "mt-5", style: "max-height: 500px" if post.photo.attached? %>
+    <%= image_tag post.photo, class: "mb-3", style: "max-height: 500px" if post.photo.attached? %>
     <%= simple_format(post.body) %>
     <hr>
     <nav class="level is-mobile mb-0">

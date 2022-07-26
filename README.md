@@ -5,8 +5,6 @@
 - [Set Up](#set-up)
    - [Using Web Browser](#using-web-browser) * RECOMMENDED *
    - [Using Local Machine](#using-local-machine)
-- [Database Structure](#database-structure)
-- [Thoughts and Takeaways](#thoughts-and-takeaways)
 
 ## Overview
 
@@ -58,11 +56,3 @@ Once the database has been set up, you should be able to access the web applicat
 And opening a browser and navigating to:
 
 ```http://localhost:3000/```
-
-## Database Structure
-
-
-
-## Thoughts and Takeaways
-
-

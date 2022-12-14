@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: odin_facebook_clone_production
   username: odin_facebook_clone
   password: <%= ENV["ODIN_FACEBOOK_CLONE_DATABASE_PASSWORD"] %>

@@ -105,4 +105,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Fix Blocked host exception
+  config.hosts << "odin-facebook-clone-production.up.railway.app"
 end
